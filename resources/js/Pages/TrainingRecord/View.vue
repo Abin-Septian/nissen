@@ -79,7 +79,7 @@ import pickBy from 'lodash/pickBy'
 import throttle from 'lodash/throttle'
 
 export default {
-  metaInfo: { title: 'Employees' },
+  metaInfo: { title: 'Training Record' },
   layout: Layout,
   components: {
   },

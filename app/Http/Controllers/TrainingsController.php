@@ -100,7 +100,7 @@ class TrainingsController extends Controller
 
             DB::commit();
 
-            return Redirect::route('trainings')->with('success', 'Training created.');
+            return Redirect::route('trainings_list')->with('success', 'Training created.');
         }catch (Exception $e){
             DB::rollback();
         }
