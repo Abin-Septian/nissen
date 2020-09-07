@@ -6,7 +6,7 @@
 @import "tailwindcss/components";
 @import "buttons";
 @import "form";
-@import "bootstrap";
+@import "boots";
 @import "nprogress";
 
 /* Utilities */
