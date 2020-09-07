@@ -16,7 +16,7 @@
             </dropdown>
           </div>
           <div class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center">
-            <div class="mt-1 mr-4">{{ $page.auth.user.account.name }}</div>
+            <div class="mt-1 mr-4">Nissen</div>
             <dropdown class="mt-1" placement="bottom-end">
               <div class="flex items-center cursor-pointer select-none group">
                 <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-no-wrap">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="flex flex-grow overflow-hidden">
-          <main-menu :url="url()" class="bg-indigo-800 flex-shrink-0 w-56 p-12 hidden md:block overflow-y-auto" />
+          <main-menu :url="url()" class="bg-indigo-800 flex-shrink-0 w-56 p-3 hidden md:block overflow-y-auto" />
           <div class="flex-1 px-4 py-8 md:p-12 overflow-y-auto" scroll-region>
             <flash-messages />
             <slot />

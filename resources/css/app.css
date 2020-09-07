@@ -10,3 +10,6 @@
 
 /* Utilities */
 @import "tailwindcss/utilities";
+
+/* bootstrap */
+@import "bootstrap"

@@ -11,6 +11,9 @@
     {{-- Ping CRM --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=String.prototype.startsWith" defer></script>
 
+    {{-- jsPDF --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js" defer></script>
+
     <script src="{{ mix('/js/app.js') }}" defer></script>
     @routes
 </head>
