@@ -11,13 +11,11 @@
 
 <script>
 import Layout from '@/Shared/Layout'
-import Card from '@/Shared/Card'
 
 export default {
   metaInfo: { title: 'Dashboard' },
   layout: Layout,
   components: {
-    CardComponent : Card,
   },
   data(){
     return {
