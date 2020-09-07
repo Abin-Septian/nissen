@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .link {
   color:blue
 }
