@@ -21,6 +21,11 @@ class Training extends Model
         return $this->belongsToMany(Employee::class, 'employee_user')
                     ->withPivot('result', 'participant');
     }
+    public function TrainingRecord()
+    {
+        return $this->belongsToMany(Training::class, 'employee_user')
+                    ->withPivot('result', 'participant');
+    }
 
     public function scopeFilter($query, array $filters)
     {

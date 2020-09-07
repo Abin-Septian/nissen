@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mb-12">
     <h4 class="mb-8 font-bold text-3xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
@@ -51,10 +51,10 @@
               {{ participant.name }}
             </div>
           </td>
-          <td class="border-t">
-            <div class="px-6 py-4 flex items-center">
+          <td class="border-t link">
+            <inertia-link class="px-6 py-4 flex items-center" :href="route('training_record.show', participant.id)" tabindex="-1">
               {{ participant.nik }}
-            </div>
+            </inertia-link>
           </td>
           <td class="border-t">
             <div class="px-6 py-4 flex items-center">
@@ -130,5 +130,10 @@ export default {
 </script>
 
 <style scoped>
-
+.link {
+  color:blue
+}
+.link:hover{
+  text-decoration: underline;
+}
 </style>
