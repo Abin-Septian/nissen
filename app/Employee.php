@@ -33,7 +33,8 @@ class Employee extends Model
 
     public function TrainingRecord()
     {
-        return $this->belongsToMany(Training::class)->withPivot('result', 'participan');
+        return $this->belongsToMany(Training::class, 'employee_user')
+                    ->withPivot('result', 'participant');
     }
 
     public function scopeOrderByName($query)
