@@ -51,7 +51,7 @@
               {{ participant.name }}
             </div>
           </td>
-          <td class="border-t link">
+          <td class="border-t" style="color:blue;">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('training_record.show', participant.id)" tabindex="-1">
               {{ participant.nik }}
             </inertia-link>
@@ -128,12 +128,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.link {
-  color:blue
-}
-.link:hover{
-  text-decoration: underline;
-}
-</style>
