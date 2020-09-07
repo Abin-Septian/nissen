@@ -47,7 +47,7 @@ class TrainingRecordController extends Controller
                 'position' => $employee->position ? $employee->position->only('name') : null,
                 'section' => $employee->section ? $employee->section->only('name') : null,
             ],
-            'trainings' => Training::find($employee->id)->TrainingRecord()
+            'trainings' => Employee::find($employee->id)->TrainingRecord()
                 ->where('employee_user.participant','=',1)
                 ->get()
                 ->transform(function ($trainings) {
