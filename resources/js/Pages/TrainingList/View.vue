@@ -82,13 +82,13 @@ import Layout from '@/Shared/Layout'
 import mapValues from 'lodash/mapValues'
 import pickBy from 'lodash/pickBy'
 import throttle from 'lodash/throttle'
-import Icon from '@/Shared/Icon'
+// import Icon from '@/Shared/Icon'
 
 export default {
   metaInfo: { title: 'Training List' },
   layout: Layout,
   components: {
-    Icon,
+    // Icon,
   },
   props: {
     training: Object,
