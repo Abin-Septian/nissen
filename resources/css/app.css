@@ -6,9 +6,9 @@
 @import "tailwindcss/components";
 @import "buttons";
 @import "form";
-@import "boots";
+@import "datepicker-index.css";
+@import "bootstrap";
 @import "nprogress";
-@import "datepicker";
 
 /* Utilities */
 @import "tailwindcss/utilities";
