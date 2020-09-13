@@ -1,6 +1,10 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
   theme: {
     extend: {
       fontFamily: {
@@ -29,4 +33,5 @@ module.exports = {
     zIndex: ['responsive', 'focus'],
   },
   plugins: [],
+  purge: false,
 }
