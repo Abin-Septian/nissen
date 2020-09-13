@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
@@ -78,7 +79,7 @@ class EmployeesController extends Controller
             ])
         );
 
-        return Redirect::route('employees')->with('success', 'Employee created.');
+        return Redirect::route('employees')->with('success', 'Karyawan berhasil ditambahkan.');
     }
 
     public function edit(Employee $employee)
@@ -92,6 +93,7 @@ class EmployeesController extends Controller
                 'position_id' => $employee->position_id,
                 'section_id' => $employee->section_id,
                 'date_entry' => $employee->date_entry,
+                'deleted_at' => $employee->deleted_at,
             ],
             'departments' => Auth::user()->account
                 ->departments()
@@ -133,14 +135,14 @@ class EmployeesController extends Controller
             ])
         );
 
-        return Redirect::route('employees')->with('success', 'Employee updated.');
+        return Redirect::route('employees')->with('success', 'Karyawan berhasil di updated.');
     }
 
     public function destroy(Employee $employee)
     {
         $employee->delete();
 
-        return Redirect::route('employees')->with('success', 'Employee deleted.');
+        return Redirect::route('employees')->with('warning', 'Employee deleted.');
     }
 
     public function restore(Employee $employee)

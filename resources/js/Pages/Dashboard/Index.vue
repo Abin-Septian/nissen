@@ -2,8 +2,12 @@
   <div>
     <h1 class="mb-8 font-bold text-3xl">Dashborad</h1>
     <div class="container">
-      <div class="row">
-        <card-component v-for="(card, index) in cards" :key="index" :title="card.title" :desc="card.desc" />
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="row d-flex">
+            <card-component v-for="(card, index) in cards" :key="index" :title="card.title" :desc="card.desc" />
+          </div>
+        </div>
       </div>
     </div>
   </div>

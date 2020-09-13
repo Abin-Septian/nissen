@@ -28,7 +28,12 @@
           </select-input>
 
           <text-input v-model="form.nik" :errors="$page.errors.nik" class="pr-6 pb-8 w-full lg:w-1/2" label="NIK" />
-          <text-input v-model="form.date_entry" :errors="$page.errors.date_entry" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Entry" />
+        
+          <div class="pr-6 pb-8 w-full lg:w-1/2">
+            <label class="form-label" for="date-entry">Tanggal Masuk:</label>
+            <date-picker id="date-entry" v-model="form.date_entry" valueType="format" style="width: 100%;" placeholder="Pilih Tanggal" input-class="form-input d-block" class="d-block" />
+            <div v-if="$page.errors.date_entry" class="form-error">{{ $page.errors.date_entry }}</div>
+          </div>
         </div>
         <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
           <loading-button :loading="sending" class="btn-indigo" type="submit">Simpan</loading-button>
@@ -43,6 +48,8 @@ import Layout from '@/Shared/Layout'
 import LoadingButton from '@/Shared/LoadingButton'
 import SelectInput from '@/Shared/SelectInput'
 import TextInput from '@/Shared/TextInput'
+import DatePicker from 'vue2-datepicker'
+import 'vue2-datepicker/index.css'
 
 export default {
   metaInfo: { title: 'Add Employee' },
@@ -51,6 +58,7 @@ export default {
     LoadingButton,
     SelectInput,
     TextInput,
+    DatePicker,
   },
   props: {
     departments: Array,
