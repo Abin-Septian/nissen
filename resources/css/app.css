@@ -8,7 +8,7 @@
 @import "form";
 @import "boots";
 @import "nprogress";
+@import "datepicker";
 
 /* Utilities */
 @import "tailwindcss/utilities";
-@import "vue2-datepicker/index";
