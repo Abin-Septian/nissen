@@ -105,19 +105,6 @@
     transition: background-color .3s
 }
 
-.mx-zoom-in-down-enter-active,
-.mx-zoom-in-down-leave-active {
-    opacity: 1;
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-    -webkit-transition: opacity .3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);
-    transition: opacity .3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);
-    transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1), opacity .3s cubic-bezier(0.23, 1, 0.32, 1);
-    transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1), opacity .3s cubic-bezier(0.23, 1, 0.32, 1), -webkit-transform .3s cubic-bezier(0.23, 1, 0.32, 1);
-    -webkit-transform-origin: center top;
-    transform-origin: center top
-}
-
 .mx-zoom-in-down-enter,
 .mx-zoom-in-down-leave-to {
     opacity: 0;
@@ -272,15 +259,6 @@
     display: -ms-flexbox;
     display: flex
 }
-
-/* @media(max-width: 750px) {
-    .mx-range-wrapper {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column
-    }
-} */
 
 .mx-datepicker-header {
     padding: 6px 8px;
