@@ -11,3 +11,5 @@
 
 /* Utilities */
 @import "tailwindcss/utilities";
+
+@import 'vue2-datepicker/index'
