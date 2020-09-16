@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Positions</h1>
+    <h1 class="mb-8 font-bold text-3xl">Daftar Posisi</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Trashed:</label>
@@ -11,32 +11,39 @@
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('positions.create')">
-        <span>Create</span>
-        <span class="hidden md:inline">Positions</span>
+        <span class="mr-2">
+          <strong>+</strong>
+        </span>
+        <span>Tambah</span>
+        <span class="hidden md:inline">Posisi</span>
       </inertia-link>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+      <sorted-table :values="positions.data" class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
-          <th class="px-6 pt-6 pb-4">Name</th>
+          <th style="border:0px; padding:1.5rem;">
+            <sort-link name="name" class="py-12 text-gray-700">Nama Posisi</sort-link>
+          </th>
         </tr>
-        <tr v-for="position in positions.data" :key="position.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
-          <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('positions.edit', position.id)">
-              {{ position.name }}
-              <icon v-if="position.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
-            </inertia-link>
-          </td>
-          <td class="border-t w-px">
-            <inertia-link class="px-4 flex items-center" :href="route('positions.edit', position.id)" tabindex="-1">
-              <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
-            </inertia-link>
-          </td>
-        </tr>
-        <tr v-if="positions.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">No positions found.</td>
-        </tr>
-      </table>
+        <tbody slot="body" slot-scope="sort">
+          <tr v-for="position in sort.values" :key="position.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+            <td class="border-t">
+              <inertia-link class="px-6 py-2 flex items-center focus:text-indigo-500" :href="route('positions.edit', position.id)">
+                {{ position.name }}
+                <icon v-if="position.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
+              </inertia-link>
+            </td>
+            <td class="border-t w-px">
+              <inertia-link class="px-4 flex items-center" :href="route('positions.edit', position.id)" tabindex="-1">
+                <icon name="cheveron-right" class="block mt-2 w-6 h-6 fill-gray-400" />
+              </inertia-link>
+            </td>
+          </tr>
+          <tr v-if="positions.data.length === 0">
+            <td class="border-t px-6 py-2" colspan="4">No positions found.</td>
+          </tr>
+        </tbody>
+      </sorted-table>
     </div>
     <pagination :links="positions.links" />
   </div>
@@ -52,7 +59,7 @@ import SearchFilter from '@/Shared/SearchFilter'
 import throttle from 'lodash/throttle'
 
 export default {
-  metaInfo: { title: 'Positions' },
+  metaInfo: { title: 'Daftar Posisi' },
   layout: Layout,
   components: {
     Icon,

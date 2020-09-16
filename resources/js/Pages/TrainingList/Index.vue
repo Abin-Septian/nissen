@@ -3,7 +3,7 @@
     <h1 class="mb-8 font-bold text-3xl">Daftar Training</h1>
     <div class="mb-6 flex justify-end items-center">
       <inertia-link class="btn-indigo" :href="route('trainings.create')">
-        <span class="mr-3">
+        <span class="mr-2">
           <strong>
             +
           </strong>

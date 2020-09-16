@@ -11,7 +11,7 @@
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('employees.create')">
-        <span class="mr-3">
+        <span class="mr-2">
           <strong>+</strong>
         </span>
         <span>Tambah</span>
@@ -37,7 +37,7 @@
             <sort-link name="section.name" class="py-12 text-gray-700">Section</sort-link>
           </th>
           <th style="border:0px; padding:1.5rem;" colspan="2">
-            <sort-link name="date_entry" class="py-12 text-gray-700">Date of Entry</sort-link>
+            <sort-link name="date_entry" class="py-12 text-gray-700">Tanggal Masuk</sort-link>
           </th>
         </tr>
         <tbody slot="body" slot-scope="sort">
@@ -86,7 +86,7 @@
             </td>
           </tr>
           <tr v-if="employees.data.length === 0">
-            <td class="border-t px-6 py-4" colspan="4">No employees found.</td>
+            <td class="border-t px-6 py-4" colspan="4">Karyawan tidak ditemukan.</td>
           </tr>
         </tbody>
       </sorted-table>
@@ -105,7 +105,7 @@ import SearchFilter from '@/Shared/SearchFilter'
 import throttle from 'lodash/throttle'
 
 export default {
-  metaInfo: { title: 'Employees' },
+  metaInfo: { title: 'Daftar Karyawan' },
   layout: Layout,
   components: {
     Icon,

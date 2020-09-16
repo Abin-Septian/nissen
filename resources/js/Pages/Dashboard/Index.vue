@@ -23,20 +23,25 @@ export default {
   components: {
     CardComponent : Card,
   },
+  props: {
+    employee : Number,
+    training : Number,
+    thisMonth : Number,
+  },
   data(){
     return {
       cards: [
         {
           title: 'Jumlah Training',
-          desc: '67',
+          desc: this.training,
         },
         {
           title: 'Training Bulan ini',
-          desc: '11',
+          desc: this.thisMonth,
         },
         {
           title: 'Jumlah Pegawai',
-          desc: '145',
+          desc: this.employee,
         },
       ],
     }

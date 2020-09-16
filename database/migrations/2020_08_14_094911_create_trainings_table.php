@@ -24,6 +24,7 @@ class CreateTrainingsTable extends Migration
             $table->text('content');
             $table->string('method');
             $table->text('note');
+            $table->integer('id_department');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -11,7 +11,7 @@
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('departments.create')">
-        <span class="mr-3">
+        <span class="mr-2">
           <strong>+</strong>
         </span>
         <span>Tambah</span>
@@ -19,7 +19,7 @@
       </inertia-link>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto">
-      <sorted-table :values="dept" class="w-full whitespace-no-wrap">
+      <sorted-table :values="departments.data" class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
           <th style="border:0px; padding:1.5rem;">
             <sort-link name="name" class="py-12 text-gray-700">Nama Departement</sort-link>
@@ -35,14 +35,14 @@
             </td>
             <td class="border-t w-px">
               <inertia-link class="px-4 flex items-center" :href="route('departments.edit', department.id)" tabindex="-1">
-                <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
+                <icon name="cheveron-right" class="block mt-2 w-6 h-6 fill-gray-400" />
               </inertia-link>
             </td>
           </tr>
+          <tr v-if="departments.data.length === 0">
+            <td class="border-t px-6 py-4" colspan="4">No departments found.</td>
+          </tr>
         </tbody>
-        <tr v-if="departments.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">No departments found.</td>
-        </tr>
       </sorted-table>
     </div>
     <pagination :links="departments.links" />
@@ -76,7 +76,6 @@ export default {
         search: this.filters.search,
         trashed: this.filters.trashed,
       },
-      dept : this.departments.data,
     }
   },
   watch: {

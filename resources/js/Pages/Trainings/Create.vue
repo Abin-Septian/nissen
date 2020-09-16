@@ -1,27 +1,31 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('trainings')">Trainings</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> Create
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span> Tambah Training
     </h1>
     <div class="bg-white rounded shadow overflow-hidden max-3xl">
       <form @submit.prevent="submit">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.title" :errors="$page.errors.title" class="pr-6 pb-8 w-full lg:w-1/2" label="Title" />
+          <text-input v-model="form.title" :errors="$page.errors.title" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama Training" />
+
+          <div class="pr-6 pb-8 w-full lg:w-1/2">
+            <label class="form-label" for="date-entry">Tanggal:</label>
+            <date-picker id="date-entry" v-model="form.date" valueType="format" style="width: 100%;" placeholder="Pilih Tanggal" input-class="form-input d-block" class="d-block" />
+            <div v-if="$page.errors.date_entry" class="form-error">{{ $page.errors.date_entry }}</div>
+          </div>
         
-          <text-input v-model="form.date" :errors="$page.errors.date" class="pr-6 pb-8 w-full lg:w-1/2" label="Date" />
+          <text-input v-model="form.type" :errors="$page.errors.type" class="pr-6 pb-8 w-full lg:w-1/2" label="Tipe" />
         
-          <text-input v-model="form.type" :errors="$page.errors.type" class="pr-6 pb-8 w-full lg:w-1/2" label="Type" />
+          <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Lokasi" />
         
-          <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Location" />
-        
-          <text-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Method" />
+          <text-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Metode" />
         
           <text-input v-model="form.trainer" :errors="$page.errors.trainer" class="pr-6 pb-8 w-full lg:w-1/2" label="Trainer" />
           
-          <text-input v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full lg:w-1/2" label="Content" />
+          <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full lg:w-1/2" label="Content" />
           
-          <text-input v-model="form.note" :errors="$page.errors.note" class="pr-6 pb-8 w-full lg:w-1/2" label="Note" />
+          <text-area v-model="form.note" :errors="$page.errors.note" class="pr-6 pb-8 w-full lg:w-1/2" label="Keterangan" />
         </div>
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
           <table class="w-full whitespace-no-wrap">
@@ -64,7 +68,7 @@
           </table>
         </div>
         <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
-          <loading-button :loading="sending" class="btn-indigo" type="submit">Create Training</loading-button>
+          <loading-button :loading="sending" class="btn-indigo" type="submit">Simpan Training</loading-button>
         </div>
       </form>
     </div>
@@ -76,15 +80,19 @@ import Layout from '@/Shared/Layout'
 import LoadingButton from '@/Shared/LoadingButton'
 import SelectInput from '@/Shared/SelectInput'
 import TextInput from '@/Shared/TextInput'
+import TextArea from '@/Shared/TextArea'
+import DatePicker from 'vue2-datepicker'
 
 export default {
-  metaInfo: { title: 'Create Training' },
+  metaInfo: { title: 'Tambah Training' },
   layout: Layout,
   components: {
     LoadingButton,
     // eslint-disable-next-line vue/no-unused-components
     SelectInput,
     TextInput,
+    TextArea,
+    DatePicker,
   },
   props: {
     employees: Object,
@@ -101,6 +109,7 @@ export default {
         location: null,
         trainer: null,
         content: null,
+        note: null,
         method: null,
         participans: this.participans.data,
       },

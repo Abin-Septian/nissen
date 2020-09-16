@@ -79,7 +79,7 @@ class EmployeesController extends Controller
             ])
         );
 
-        return Redirect::route('employees')->with('success', 'Karyawan berhasil ditambahkan.');
+        return Redirect::route('employees')->with('success', 'Data Karyawan berhasil ditambahkan.');
     }
 
     public function edit(Employee $employee)
@@ -135,14 +135,14 @@ class EmployeesController extends Controller
             ])
         );
 
-        return Redirect::route('employees')->with('success', 'Karyawan berhasil di updated.');
+        return Redirect::route('employees')->with('success', 'Data Karyawan berhasil di updated.');
     }
 
     public function destroy(Employee $employee)
     {
         $employee->delete();
 
-        return Redirect::route('employees')->with('warning', 'Employee deleted.');
+        return Redirect::route('employees')->with('warning', 'Hapus Data Karyawan Berhasil.');
     }
 
     public function restore(Employee $employee)

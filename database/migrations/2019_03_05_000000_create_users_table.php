@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 25);
             $table->string('email', 50)->unique();
             $table->string('password')->nullable();
+            $table->string('id_department')->nullable();
             $table->boolean('owner')->default(false);
             $table->string('photo_path', 100)->nullable();
             $table->rememberToken();

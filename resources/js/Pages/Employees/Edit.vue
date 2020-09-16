@@ -29,7 +29,7 @@
         </div>
         <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
           <button v-if="!employee.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete Contact</button>
-          <loading-button :loading="sending" class="btn-indigo ml-auto" type="submit">Update Employee</loading-button>
+          <loading-button :loading="sending" class="btn-indigo ml-auto" type="submit">Simpan</loading-button>
         </div>
       </form>
     </div>
@@ -46,7 +46,7 @@ import TrashedMessage from '@/Shared/TrashedMessage'
 export default {
   metaInfo() {
     return {
-      title: `${this.form.first_name} ${this.form.last_name}`,
+      title: `Edit ${this.employee.name}`,
     }
   },
   layout: Layout,
