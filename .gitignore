@@ -6,6 +6,7 @@
 /public/storage
 /storage/*.key
 /vendor
+readme.md
 .DS_Store
 .env
 .env.backup
