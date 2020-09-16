@@ -1,8 +1,8 @@
 # Ping CRM
 
 ```sh
-git clone https://github.com/inertiajs/pingcrm.git pingcrm
-cd pingcrm
+git clone git@github.com:Abin-Septian/nissen.git nissen
+cd nissen
 ```
 Install PHP dependencies:
 
