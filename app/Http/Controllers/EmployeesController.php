@@ -65,7 +65,7 @@ class EmployeesController extends Controller
         Auth::user()->account->employees()->create(
             Request::validate([
                 'name' => ['required', 'max:100'],
-                'nik' => ['required', 'int'],
+                'nik' => ['required', 'string'],
                 'department_id' => ['required', Rule::exists('departments', 'id')->where(function ($query) {
                     $query->where('account_id', Auth::user()->account_id);
                 })],
@@ -121,7 +121,7 @@ class EmployeesController extends Controller
         $employee->update(
             Request::validate([
                 'name' => ['required', 'max:100'],
-                'nik' => ['required', 'int'],
+                'nik' => ['required', 'string'],
                 'department_id' => ['required', Rule::exists('departments', 'id')->where(function ($query) {
                     $query->where('account_id', Auth::user()->account_id);
                 })],

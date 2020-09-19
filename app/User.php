@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use League\Glide\Server;
+use App\Department;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -23,6 +24,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+    
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function getNameAttribute()

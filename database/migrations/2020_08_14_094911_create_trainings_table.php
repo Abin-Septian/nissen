@@ -18,13 +18,13 @@ class CreateTrainingsTable extends Migration
             $table->integer('account_id')->index();
             $table->string('title');
             $table->date('date');
-            $table->string('type');
+            $table->integer('type_id');
             $table->string('location');
             $table->string('trainer');
             $table->text('content');
             $table->string('method');
             $table->text('note');
-            $table->integer('id_department');
+            $table->integer('department_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -12,6 +12,11 @@ class Department extends Model
 
     protected $fillable = ['name','deleted_at'];
 
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {

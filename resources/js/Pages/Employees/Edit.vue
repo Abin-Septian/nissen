@@ -11,21 +11,25 @@
     <div class="bg-white rounded shadow overflow-hidden max-w-8xl">
       <form @submit.prevent="submit">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Name" />
           <text-input v-model="form.nik" :errors="$page.errors.nik" class="pr-6 pb-8 w-full lg:w-1/2" label="NIK" />
-          <select-input v-model="form.department_id" :errors="$page.errors.department_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Organization">
+          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama" />
+          <select-input v-model="form.department_id" :errors="$page.errors.department_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Departement">
             <option :value="null" />
             <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
           </select-input>
-          <select-input v-model="form.section_id" :errors="$page.errors.section_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Organization">
+          <select-input v-model="form.section_id" :errors="$page.errors.section_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Section">
             <option :value="null" />
             <option v-for="section in sections" :key="section.id" :value="section.id">{{ section.name }}</option>
           </select-input>
-          <select-input v-model="form.position_id" :errors="$page.errors.position_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Organization">
+          <select-input v-model="form.position_id" :errors="$page.errors.position_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Posisi">
             <option :value="null" />
             <option v-for="position in positions" :key="position.id" :value="position.id">{{ position.name }}</option>
           </select-input>
-          <text-input v-model="form.date_entry" :errors="$page.errors.date_entry" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Entry" />
+          <div class="pr-6 pb-8 w-full lg:w-1/2">
+            <label class="form-label" for="date-entry">Tanggal Masuk:</label>
+            <date-picker id="date-entry" v-model="form.date_entry" valueType="format" style="width: 100%;" placeholder="Pilih Tanggal" input-class="form-input d-block" class="d-block" />
+            <div v-if="$page.errors.date_entry" class="form-error">{{ $page.errors.date_entry }}</div>
+          </div>
         </div>
         <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
           <button v-if="!employee.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete Contact</button>
@@ -42,6 +46,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 import SelectInput from '@/Shared/SelectInput'
 import TextInput from '@/Shared/TextInput'
 import TrashedMessage from '@/Shared/TrashedMessage'
+import DatePicker from 'vue2-datepicker'
 
 export default {
   metaInfo() {
@@ -55,6 +60,7 @@ export default {
     SelectInput,
     TextInput,
     TrashedMessage,
+    DatePicker,
   },
   props: {
     employee: Object,

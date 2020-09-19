@@ -1,22 +1,24 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('contacts')">Daftar Karyawan</inertia-link>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('employees')">Daftar Karyawan</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Tambah Karyawan
     </h1>
     <div class="bg-white rounded shadow overflow-hidden max-w-8xl">
       <form @submit.prevent="submit">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Name" />
+          <text-input v-model="form.nik" :errors="$page.errors.nik" class="pr-6 pb-8 w-full lg:w-1/2" label="NIK" />
+
+          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama" />
           
           <!-- Department Select -->
-          <select-input v-model="form.department_id" :errors="$page.errors.departmentt_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Department">
+          <select-input v-model="form.department_id" :errors="$page.errors.department_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Departement">
             <option :value="null" />
             <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
           </select-input>
 
           <!-- Position Select -->
-          <select-input v-model="form.position_id" :errors="$page.errors.position_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Position">
+          <select-input v-model="form.position_id" :errors="$page.errors.position_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Posisi">
             <option :value="null" />
             <option v-for="position in positions" :key="position.id" :value="position.id">{{ position.name }}</option>
           </select-input>
@@ -26,8 +28,6 @@
             <option :value="null" />
             <option v-for="section in sections" :key="section.id" :value="section.id">{{ section.name }}</option>
           </select-input>
-
-          <text-input v-model="form.nik" :errors="$page.errors.nik" class="pr-6 pb-8 w-full lg:w-1/2" label="NIK" />
         
           <div class="pr-6 pb-8 w-full lg:w-1/2">
             <label class="form-label" for="date-entry">Tanggal Masuk:</label>

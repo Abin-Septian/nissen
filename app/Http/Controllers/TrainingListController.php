@@ -2,25 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Training;
 use App\Employee;
+use App\Training;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request as HTTPRequest;
 
 class TrainingListController extends Controller
 {
-    public function index()
+    public function index(HTTPRequest $request)
     {
-        return Inertia::render('TrainingList/Index', [
-            'trainings' => Auth::user()->account->trainings()
-                ->orderBy('title')
-                ->filter(Request::only('search', 'trashed'))
-                ->paginate()
-                ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
-        ]);
+        if($request->admin == 'true'){
+            return Inertia::render('TrainingList/Index', [
+                'trainings' => Auth::user()->account->trainings()
+                    ->orderBy('title')
+                    ->filter(Request::only('search', 'trashed'))
+                    ->paginate()
+                    ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
+            ]);
+        }
+        else{
+            return Inertia::render('TrainingList/Index', [
+                'trainings' => Auth::user()->account->trainings()
+                    ->where('department_id','=', $request->idDepartment)
+                    ->orderBy('title')
+                    ->filter(Request::only('search', 'trashed'))
+                    ->paginate()
+                    ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
+            ]);
+        }
     }
 
     public function show(Training $training)
@@ -38,7 +51,7 @@ class TrainingListController extends Controller
                 'note'      => $training->note,
             ],
             'participants' => Training::find($training->id)->TrainingReport()
-                ->where('employee_user.participant','=',1)
+                ->where('employee_training.participant','=',1)
                 ->get()
                 ->transform(function ($participants) {
                     return [

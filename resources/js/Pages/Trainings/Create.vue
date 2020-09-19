@@ -15,7 +15,11 @@
             <div v-if="$page.errors.date_entry" class="form-error">{{ $page.errors.date_entry }}</div>
           </div>
         
-          <text-input v-model="form.type" :errors="$page.errors.type" class="pr-6 pb-8 w-full lg:w-1/2" label="Tipe" />
+          <!-- type Select -->
+          <select-input v-model="form.type_id" :errors="$page.errors.type_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Tipe">
+            <option :value="null" />
+            <option v-for="type in types" :key="type.id" :value="type.id">{{ type.type }}</option>
+          </select-input>
         
           <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Lokasi" />
         
@@ -31,7 +35,7 @@
           <table class="w-full whitespace-no-wrap">
             <tr class="text-left font-bold">
               <th class="px-6 pt-6 pb-4" />
-              <th class="px-6 pt-6 pb-4">Name</th>
+              <th class="px-6 pt-6 pb-4">Nama</th>
               <th class="px-6 pt-6 pb-4">NIK</th>
               <th class="px-6 pt-6 pb-4">Department</th>
               <th class="px-6 pt-6 pb-4">Section</th>
@@ -97,6 +101,7 @@ export default {
   props: {
     employees: Object,
     participans: Object,
+    types: Object,
   },
   remember: 'form',
   data() {
@@ -105,13 +110,14 @@ export default {
       form: {
         title: null,
         date: null,
-        type: null,
+        type_id: null,
         location: null,
         trainer: null,
         content: null,
         note: null,
         method: null,
         participans: this.participans.data,
+        department_id : this.$parent.department_id,
       },
     }
   },

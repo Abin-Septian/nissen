@@ -16,6 +16,11 @@ class Employee extends Model
         return $this->belongsTo(Organization::class);
     }
 
+    public function training_type()
+    {
+        return $this->belongsTo(TrainingType::class);
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -33,7 +38,7 @@ class Employee extends Model
 
     public function TrainingRecord()
     {
-        return $this->belongsToMany(Training::class, 'employee_user')
+        return $this->belongsToMany(Training::class, 'employee_training')
                     ->withPivot('result', 'participant');
     }
 

@@ -35,7 +35,14 @@ class UsersController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+        return Inertia::render('Users/Create',[
+            'departments' => Auth::user()->account
+                ->departments()
+                ->orderBy('name')
+                ->get()
+                ->map
+                ->only('id', 'name'),
+        ]);
     }
 
     public function store()
@@ -46,7 +53,7 @@ class UsersController extends Controller
             'email' => ['required', 'max:50', 'email', Rule::unique('users')],
             'password' => ['nullable'],
             'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
+            'department_id' => ['required', 'integer'],
         ]);
 
         Auth::user()->account->users()->create([
@@ -55,7 +62,7 @@ class UsersController extends Controller
             'email' => Request::get('email'),
             'password' => Request::get('password'),
             'owner' => Request::get('owner'),
-            'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
+            'department_id' => Request::get('department_id'),
         ]);
 
         return Redirect::route('users')->with('success', 'User created.');

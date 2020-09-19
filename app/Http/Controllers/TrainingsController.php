@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Training;
 use Carbon\Carbon;
 use Inertia\Inertia;
+use App\TrainingType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -56,6 +57,7 @@ class TrainingsController extends Controller
                     'result'  => null, 
                 ];
             }),
+            'types' => TrainingType::all(),
         ]);
     }
 
@@ -69,14 +71,15 @@ class TrainingsController extends Controller
 
             Auth::user()->account->trainings()->create(
                 Request::validate([
-                    'title'     => ['required', 'string'],
-                    'date'      => ['required', 'date'],
-                    'type'      => ['required', 'string'],
-                    'location'  => ['required', 'string'],
-                    'trainer'   => ['required', 'string'],
-                    'content'   => ['required', 'string'],
-                    'method'    => ['required', 'string'],
-                    'note'      => ['required', 'string'],
+                    'title'         => ['required', 'string'],
+                    'date'          => ['required', 'date'],
+                    'type_id'       => ['required', 'integer'],
+                    'location'      => ['required', 'string'],
+                    'trainer'       => ['required', 'string'],
+                    'content'       => ['required', 'string'],
+                    'method'        => ['required', 'string'],
+                    'note'          => ['required', 'string'],
+                    'department_id' => ['required', 'integer'],
                 ])
             );
 
@@ -88,7 +91,7 @@ class TrainingsController extends Controller
                 $result     = $value['result'];
                 $employeeId = $value['id'];
 
-                $id = DB::table('employee_user')->insertGetId(
+                $id = DB::table('employee_training')->insertGetId(
                     array('employee_id' => $employeeId, 
                           'training_id' => $trainingId,
                           'result'      => $result,

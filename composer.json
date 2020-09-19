@@ -25,7 +25,7 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5",
         "reinink/remember-query-strings": "^0.1.0",
-        "tightenco/ziggy": "^0.8.0"
+        "tightenco/ziggy": "^0.9.4"
     },
     "config": {
         "optimize-autoloader": true,

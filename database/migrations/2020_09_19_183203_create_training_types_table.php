@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeTrainingPivotTable extends Migration
+class CreateTrainingTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateEmployeeTrainingPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_training', function (Blueprint $table) {
+        Schema::create('training_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('training_id');
-            $table->unsignedBigInteger('result')->default(0)->nullable();
-            $table->boolean('participant');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateEmployeeTrainingPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_training');
+        Schema::dropIfExists('training_type');
     }
 }

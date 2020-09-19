@@ -9,7 +9,7 @@ class Training extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'date', 'type', 'location', 'method', 'trainer', 'content', 'note'];
+    protected $fillable = ['title', 'date', 'type_id', 'location', 'method', 'trainer', 'content', 'note', 'department_id'];
 
     public function User()
     {
@@ -18,7 +18,7 @@ class Training extends Model
 
     public function TrainingReport()
     {
-        return $this->belongsToMany(Employee::class, 'employee_user')
+        return $this->belongsToMany(Employee::class, 'employee_training')
                     ->withPivot('result', 'participant');
     }
 
