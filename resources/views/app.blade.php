@@ -14,7 +14,7 @@
     {{-- jsPDF --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js" defer></script>
 
-    <script src="{{ asset( mix('js/app.js')) }}" defer></script>
+    <script src="{{ mix('/js/app.js') }}" defer></script>
     @routes
 </head>
 <body class="font-sans leading-none text-gray-700 antialiased">
