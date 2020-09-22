@@ -43,12 +43,11 @@ class TrainingListController extends Controller
                 'id'        => $training->id,
                 'title'     => $training->title,
                 'date'      => $training->date,
-                'type'      => $training->type,
+                'type'      => $training->type->only('type'),
                 'location'  => $training->location,
                 'trainer'   => $training->trainer,
                 'content'   => $training->content,
-                'method'    => $training->methode,
-                'note'      => $training->note,
+                'method'    => $training->method,
             ],
             'participants' => Training::find($training->id)->TrainingReport()
                 ->where('employee_training.participant','=',1)
@@ -60,6 +59,8 @@ class TrainingListController extends Controller
                         'name' => $participants->name,
                         'department' => $participants->department->name,
                         'result' => $participants->pivot->result,
+                        'score' => $participants->pivot->score,
+                        'note' => $participants->pivot->note,
                     ];
                 }),
         ]

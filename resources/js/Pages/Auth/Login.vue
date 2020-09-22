@@ -1,9 +1,10 @@
 <template>
   <div class="p-6 bg-indigo-800 min-h-screen flex justify-center items-center">
     <div class="w-full max-w-md">
-      <logo class="block mx-auto w-full max-w-xs fill-white" height="50" />
+      <h2 class="d-flex justify-content-center text-white">Selamat Datang!</h2>
       <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="submit">
         <div class="px-10 py-12">
+          <h4 class="d-flex justify-content-center">Login Form</h4>
           <text-input v-model="form.email" :errors="$page.errors.email" class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
           <text-input v-model="form.password" class="mt-6" label="Password" type="password" />
           <label class="mt-6 select-none flex items-center" for="remember">
@@ -38,8 +39,8 @@ export default {
     return {
       sending: false,
       form: {
-        email: 'johndoe@example.com',
-        password: 'secret',
+        email: null,
+        password: null,
         remember: null,
       },
     }

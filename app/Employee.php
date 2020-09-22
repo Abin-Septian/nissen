@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -36,10 +37,41 @@ class Employee extends Model
         return $this->belongsTo(Position::class);
     }
 
+    public static function employeeTrainings($request){
+
+        $condition = $request->admin == 'true' ? '' : "AND `employees`.`department_id` = $request->idDepartment" ;
+
+        $query = "SELECT
+                    `employees`.`id` as `id` ,
+                    `employees`.`name` as `name`,
+                    `nik`,
+                    `departments`.`name` as `dname`,
+                    `positions`.`name` as `pname`,
+                    `sections`.`name` as `sname` 
+                FROM
+                    `employees`
+                    LEFT JOIN `departments`
+                    ON `departments`.`id` = `employees`.`department_id`
+                    LEFT JOIN `sections`
+                    ON `sections`.`id` = `employees`.`section_id`
+                    LEFT JOIN `positions`
+                    ON `positions`.`id` = `employees`.`position_id`
+                WHERE `employees`.`id` IN
+                    (SELECT
+                    `employee_id`
+                    FROM
+                    `employee_training`) 
+                    $condition";
+
+        $data = DB::select($query);
+        
+        return $data;
+    }
+
     public function TrainingRecord()
     {
         return $this->belongsToMany(Training::class, 'employee_training')
-                    ->withPivot('result', 'participant');
+                    ->withPivot('result', 'score', 'note', 'participant');
     }
 
     public function scopeOrderByName($query)

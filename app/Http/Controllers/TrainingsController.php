@@ -27,43 +27,17 @@ class TrainingsController extends Controller
 
     public function create()
     {
+        $employees = Training::retrieveData();
+                        
         return Inertia::render('Trainings/Create',[
-            'employees' => Auth::user()->account->employees()
-            ->with('department')
-            ->orderByName()
-            ->filter(Request::only('search', 'trashed'))
-            ->paginate()
-            ->transform(function ($employee) {
-                return [
-                    'id' => $employee->id,
-                    'name' => $employee->name,
-                    'nik' => $employee->nik,
-                    'date_entry' => $employee->date_entry,
-                    'deleted_at' => $employee->deleted_at,
-                    'department' => $employee->department ? $employee->department->only('name') : null,
-                    'position' => $employee->position ? $employee->position->only('name') : null,
-                    'section' => $employee->section ? $employee->section->only('name') : null,
-                ];
-            }),
-            'participans' => Auth::user()->account->employees()
-            ->with('department')
-            ->orderByName()
-            ->filter(Request::only('search', 'trashed'))
-            ->paginate()
-            ->transform(function ($employee) {
-                return [
-                    'id' => $employee->id,
-                    'checked' => false,
-                    'result'  => null, 
-                ];
-            }),
+            'employees' => $employees,
             'types' => TrainingType::all(),
         ]);
     }
 
     public function store()
     {
-        $participans = Request::only(['participans']);
+        $participans = Request::only(['emp']);
 
         DB::beginTransaction();
 
@@ -76,29 +50,35 @@ class TrainingsController extends Controller
                     'type_id'       => ['required', 'integer'],
                     'location'      => ['required', 'string'],
                     'trainer'       => ['required', 'string'],
-                    'content'       => ['required', 'string'],
                     'method'        => ['required', 'string'],
-                    'note'          => ['required', 'string'],
+                    'content'       => ['required', 'string'],
                     'department_id' => ['required', 'integer'],
                 ])
             );
 
             $trainingId = DB::table('trainings')->orderBy('id', 'desc')->pluck('id')->first();
 
-            foreach($participans['participans'] as $key => $value){
+            foreach($participans['emp'] as $key => $value){
                 
                 $checked    = $value['checked'];
                 $result     = $value['result'];
+                $score      = $value['score'];
+                $note       = $value['note'];
                 $employeeId = $value['id'];
 
-                $id = DB::table('employee_training')->insertGetId(
-                    array('employee_id' => $employeeId, 
-                          'training_id' => $trainingId,
-                          'result'      => $result,
-                          'participant' => $checked,
+                if($checked == 'true'){
+                    $id = DB::table('employee_training')->insertGetId(
+                    array("employee_id" => $employeeId, 
+                          "training_id" => $trainingId,
+                          "result" => $result,
+                          "score" => $score,
+                          "note" => $note,
+                          "participant" => $checked,
                           "created_at"  => Carbon::now(), # new \Datetime()
                           "updated_at"  => Carbon::now())  # new \Datetime())
-                );
+                    );
+                }
+                
             }
 
             DB::commit();
@@ -109,35 +89,26 @@ class TrainingsController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Training $training)
     {
-        //
+        $employees = Training::retrieveEdit($training->id);
+                        
+        return Inertia::render('Trainings/Edit',[
+            'training' => [
+                'id'        => $training->id,
+                'title'     => $training->title,
+                'date'      => $training->date,
+                'type'      => $training->type->only('type'),
+                'location'  => $training->location,
+                'trainer'   => $training->trainer,
+                'content'   => $training->content,
+                'method'    => $training->method,
+            ],
+            'employees' => $employees,
+            'types' => TrainingType::all(),
+        ]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         //
@@ -149,8 +120,10 @@ class TrainingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Training $training)
     {
-        //
+        $training->delete();
+
+        return Redirect::route('employees')->with('success', 'Hapus Data Training Berhasil.');
     }
 }

@@ -22,19 +22,19 @@
       <sorted-table :values="empl" class="w-full whitespace-no-wrap">
         <tr class="text-left font-bold">
           <th style="border:0px; padding:1.5rem;">
-            <sort-link name="name" class="py-12 text-gray-700">Nama</sort-link>
-          </th>
-          <th style="border:0px; padding:1.5rem;">
             <sort-link name="nik" class="py-12 text-gray-700">NIK</sort-link>
           </th>
           <th style="border:0px; padding:1.5rem;">
-            <sort-link name="department.name" class="py-12 text-gray-700">Departement</sort-link>
+            <sort-link name="name" class="py-12 text-gray-700">Nama</sort-link>
           </th>
           <th style="border:0px; padding:1.5rem;">
             <sort-link name="position.name" class="py-12 text-gray-700">Posisi</sort-link>
           </th>
           <th style="border:0px; padding:1.5rem;">
-            <sort-link name="section.name" class="py-12 text-gray-700">Section</sort-link>
+            <sort-link name="department.name" class="py-12 text-gray-700">Departement</sort-link>
+          </th>
+          <th style="border:0px; padding:1.5rem;">
+            <sort-link name="section.name" class="py-12 text-gray-700">Bagian</sort-link>
           </th>
           <th style="border:0px; padding:1.5rem;" colspan="2">
             <sort-link name="date_entry" class="py-12 text-gray-700">Tanggal Masuk</sort-link>
@@ -43,6 +43,11 @@
         <tbody slot="body" slot-scope="sort">
           <tr v-for="employee in sort.values" :key="employee.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
             <td class="border-t">
+              <inertia-link class="px-6 py-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
+                {{ employee.nik }}
+              </inertia-link>
+            </td>
+            <td class="border-t">
               <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('employees.edit', employee.id)">
                 {{ employee.name }}
                 <icon v-if="employee.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
@@ -50,20 +55,15 @@
             </td>
             <td class="border-t">
               <inertia-link class="px-6 py-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
-                {{ employee.nik }}
+                <div v-if="employee.position">
+                  {{ employee.position.name }}
+                </div>
               </inertia-link>
             </td>
             <td class="border-t">
               <inertia-link class="px-6 py-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
                 <div v-if="employee.department">
                   {{ employee.department.name }}
-                </div>
-              </inertia-link>
-            </td>
-            <td class="border-t">
-              <inertia-link class="px-6 py-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
-                <div v-if="employee.position">
-                  {{ employee.position.name }}
                 </div>
               </inertia-link>
             </td>
@@ -80,13 +80,13 @@
               </inertia-link>
             </td>
             <td class="border-t w-px">
-              <inertia-link class="px-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
+              <inertia-link class="px-4 pt-4 flex items-center" :href="route('employees.edit', employee.id)" tabindex="-1">
                 <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
               </inertia-link>
             </td>
           </tr>
           <tr v-if="employees.data.length === 0">
-            <td class="border-t px-6 py-4" colspan="4">Karyawan tidak ditemukan.</td>
+            <td class="border-t px-6 py-4" colspan="7">Karyawan tidak ditemukan.</td>
           </tr>
         </tbody>
       </sorted-table>

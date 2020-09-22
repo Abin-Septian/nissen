@@ -17,7 +17,9 @@ class CreateEmployeeTrainingPivotTable extends Migration
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('training_id');
-            $table->unsignedBigInteger('result')->default(0)->nullable();
+            $table->boolean('result')->default(false);
+            $table->unsignedBigInteger('score')->default(0)->nullable();
+            $table->string('note')->nullable();
             $table->boolean('participant');
             $table->timestamps();
         });

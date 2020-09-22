@@ -142,7 +142,7 @@ class EmployeesController extends Controller
     {
         $employee->delete();
 
-        return Redirect::route('employees')->with('warning', 'Hapus Data Karyawan Berhasil.');
+        return Redirect::route('employees')->with('success', 'Hapus Data Karyawan Berhasil.');
     }
 
     public function restore(Employee $employee)

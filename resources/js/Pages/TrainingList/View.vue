@@ -5,7 +5,7 @@
       <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
     </h4>
     <div class="mb-6 flex justify-end items-center">
-      <inertia-link class="btn-indigo mr-3" :href="route('trainings.create')">
+      <inertia-link class="btn-indigo mr-3" :href="route('trainings.edit', training.id)">
         <span>Edit</span>
         <span class="hidden md:inline">Training</span>
       </inertia-link>
@@ -27,11 +27,23 @@
           </div>
           <div class="form-group col-md-6 col-sm-12">
             <label for="title">Jenis Training</label>
-            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.type">
+            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.type.type">
+          </div>
+          <div class="form-group col-md-6 col-sm-12">
+            <label for="title">Trainer</label>
+            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.trainer">
+          </div>
+          <div class="form-group col-md-6 col-sm-12">
+            <label for="title">Metode</label>
+            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.method">
           </div>
           <div class="form-group col-md-6 col-sm-12">
             <label for="title">Lokasi Training</label>
             <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.location">
+          </div>
+          <div class="form-group col-md-12 col-sm-12">
+            <label for="title">Materi Training</label>
+            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.content">
           </div>
         </div>
       </div>
@@ -41,21 +53,23 @@
       <div class="bg-white rounded shadow">
         <table class="w-full whitespace-no-wrap">
           <tr class="text-center font-bold">
-            <th class="px-6 pt-6 pb-4">Nama Peserta</th>
             <th class="px-6 pt-6 pb-4">NIK</th>
+            <th class="px-6 pt-6 pb-4">Nama Peserta</th>
             <th class="px-6 pt-6 pb-4">Departement</th>
             <th class="px-6 pt-6 pb-4">Hasil</th>
+            <th class="px-6 pt-6 pb-4">Score</th>
+            <th class="px-6 pt-6 pb-4">Catatan</th>
           </tr>
           <tr v-for="participant in participants" :key="participant.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
-            <td class="border-t">
-              <div class="px-6 py-4 flex items-center">
-                {{ participant.name }}
-              </div>
-            </td>
             <td class="border-t" style="color:blue;">
               <inertia-link class="px-6 py-4 flex items-center" :href="route('training_record.show', participant.id)" tabindex="-1">
                 {{ participant.nik }}
               </inertia-link>
+            </td>
+            <td class="border-t">
+              <div class="px-6 py-4 flex items-center">
+                {{ participant.name }}
+              </div>
             </td>
             <td class="border-t">
               <div class="px-6 py-4 flex items-center">
@@ -65,7 +79,21 @@
             <td class="border-t">
               <div class="px-6 py-4 flex items-center">
                 <div class="rounded green">
-                  {{ participant.result }}
+                  {{ participant.result ? 'Lulus' : 'Tidak Lulus' }}
+                </div>
+              </div>
+            </td>
+            <td class="border-t">
+              <div class="px-6 py-4 flex items-center">
+                <div class="rounded green">
+                  {{ participant.score }}
+                </div>
+              </div>
+            </td>
+            <td class="border-t">
+              <div class="px-6 py-4 flex items-center">
+                <div class="rounded green">
+                  {{ participant.note }}
                 </div>
               </div>
             </td>

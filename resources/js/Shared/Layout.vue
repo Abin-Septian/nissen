@@ -4,9 +4,9 @@
     <div class="flex flex-col">
       <div class="h-screen flex flex-col" @click="hideDropdownMenus">
         <div class="md:flex flex-shrink-0">
-          <div class="bg-indigo-900 md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center">
+          <div class="bg-white md:flex-shrink-0 md:w-56 px-6 flex items-center justify-between md:justify-center">
             <inertia-link class="mt-1" href="/">
-              <logo class="fill-white" width="120" height="28" />
+              <img class="block w-20 l-20" :src="logo">
             </inertia-link>
             <dropdown class="md:hidden" placement="bottom-end">
               <svg class="fill-white w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
@@ -49,7 +49,6 @@
 import Dropdown from '@/Shared/Dropdown'
 import FlashMessages from '@/Shared/FlashMessages'
 import Icon from '@/Shared/Icon'
-import Logo from '@/Shared/Logo'
 import MainMenu from '@/Shared/MainMenu'
 import MainMenuSmall from '@/Shared/MainMenuSmall'
 
@@ -58,7 +57,6 @@ export default {
     Dropdown,
     FlashMessages,
     Icon,
-    Logo,
     MainMenu,
     MainMenuSmall,
   },
@@ -68,6 +66,7 @@ export default {
       accounts: null,
       owner: this.$parent.$data.props.auth.user.role,
       department_id: this.$parent.$data.props.auth.user.department_id,
+      logo: 'http://127.0.0.1:8000/img/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png/2f5e5877ed5247a49def5d410a7c31d6a8dc428ea83b534faeaf8edd95640caf/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.jpg?w=100&h=100&fit=crop',
     }
   },
   methods: {

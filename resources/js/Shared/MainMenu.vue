@@ -61,7 +61,7 @@
       </inertia-link>
     </div>
     <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('training_record')">
+      <inertia-link class="flex items-center group py-3" :href="route('training_record', { idDepartment: department_id, admin: owner })">
         <icon name="book" class="w-4 h-4 mr-2" :class="isUrl('training_record') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('training_record') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Training Record</div>
       </inertia-link>

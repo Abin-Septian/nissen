@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->integer('account_id')->index();
             $table->string('name');
-            $table->integer('nik');
+            $table->string('nik');
             $table->integer('department_id');
             $table->integer('position_id');
             $table->integer('section_id');

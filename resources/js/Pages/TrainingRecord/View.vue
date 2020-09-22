@@ -1,7 +1,7 @@
 <template>
   <div class="container mb-12">
     <h4 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Training Record</inertia-link>
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_record')">Training Record</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> {{ employee.name }}
     </h4>
     <div class="mb-6 flex justify-end items-center">
@@ -47,6 +47,7 @@
           <th class="px-6 pt-6 pb-4">No. </th>
           <th class="px-6 pt-6 pb-4">Training</th>
           <th class="px-6 pt-6 pb-4">Hasil</th>
+          <th class="px-6 pt-6 pb-4">Nilai</th>
         </tr>
         <tr v-for="(training, index) in trainings" :key="index" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
@@ -60,7 +61,12 @@
           </td>
           <td class="border-t">
             <div class="px-6 py-4 flex items-center">
-              {{ training.result }}
+              {{ training.result == 1 ? 'Lulus' : 'Tidak Lulus' }}
+            </div>
+          </td>
+          <td class="border-t">
+            <div class="px-6 py-4 flex items-center">
+              {{ training.score }}
             </div>
           </td>
         </tr>

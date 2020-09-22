@@ -23,55 +23,65 @@
         
           <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Lokasi" />
         
-          <text-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Metode" />
+          <text-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Metode Evaluasi" />
         
           <text-input v-model="form.trainer" :errors="$page.errors.trainer" class="pr-6 pb-8 w-full lg:w-1/2" label="Trainer" />
           
-          <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full lg:w-1/2" label="Content" />
-          
-          <text-area v-model="form.note" :errors="$page.errors.note" class="pr-6 pb-8 w-full lg:w-1/2" label="Keterangan" />
+          <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full" label="Materi Training" />
         </div>
-        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <table class="w-full whitespace-no-wrap">
+        <div class="d-flex justify-content-center"><strong>Daftar Peserta Training</strong></div>
+        <div class="p-4 mb-12 flex flex-wrap">
+          <table class="w-full whitespace-no-wrap mb-4">
             <tr class="text-left font-bold">
-              <th class="px-6 pt-6 pb-4" />
-              <th class="px-6 pt-6 pb-4">Nama</th>
-              <th class="px-6 pt-6 pb-4">NIK</th>
-              <th class="px-6 pt-6 pb-4">Department</th>
-              <th class="px-6 pt-6 pb-4">Section</th>
-              <th class="px-6 pt-6 pb-4">Result value</th>
+              <th class="pl-1 pt-6 pb-4" />
+              <th class="pl-1 pt-6 pb-4">NIK</th>
+              <th class="pl-1 pt-6 pb-4">Nama</th>
+              <th class="pl-1 pt-6 pb-4">Departement</th>
+              <th class="pl-1 pt-6 pb-4">Bagian</th>
+              <th class="pl-1 pt-6 pb-4">Hasil</th>
+              <th class="pl-1 pt-6 pb-4">Nilai</th>
+              <th class="pl-1 pt-6 pb-4">Catatan</th>
             </tr>
-            <tr v-for="(employee, index) in employees.data" :key="employee.id">
+            <tr v-for="(employee, index) in employees" :key="employee.id">
               <td class="border-t">
-                <input v-model="form.participans[index].checked" :value="employee.id" type="checkbox">
+                <input v-model="form.emp[index].checked" :value="employee.id" type="checkbox">
               </td>
-              <td class="bordet-t">
-                <span class="px-6 py-4 flex items-center">
-                  {{ employee.name }}
-                </span>
-              </td>
-              <td class="bordet-t">
-                <span class="px-6 py-4 flex items-center">
+              <td class="border-t">
+                <span class="pl-1 py-4 flex items-center">
                   {{ employee.nik }}
                 </span>
               </td>
-              <td class="bordet-t">
-                <span class="px-6 py-4 flex items-center">
-                  {{ employee.department.name }}
+              <td class="border-t">
+                <span class="pl-1 py-4 flex items-center">
+                  {{ employee.name }}
                 </span>
               </td>
-              <td class="bordet-t">
-                <span class="px-6 py-4 flex items-center">
-                  {{ employee.section.name }}
+              <td class="border-t">
+                <span class="pl-1 py-4 flex items-center">
+                  {{ employee.dname }}
                 </span>
               </td>
-              <td class="bordet-t">
-                <input v-model="form.participans[index].result" type="text" class="form-input">
+              <td class="border-t">
+                <span class="pl-1 py-4 flex items-center">
+                  {{ employee.sname }}
+                </span>
+              </td>
+              <td class="border-t">
+                <select-input v-model="form.emp[index].result" :value="employees.result" class="w-full">
+                  <option :value="true">Lulus</option>
+                  <option :value="false">Tidak Lulus</option>
+                </select-input>
+              </td>
+              <td class="border-t">
+                <input v-model="form.emp[index].score" type="text" class="form-input">
+              </td>
+              <td class="border-t">
+                <input v-model="form.emp[index].note" type="text" class="form-input">
               </td>
             </tr>
           </table>
         </div>
-        <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
+        <div class="px-8 py-4 bg-transparant border-t border-gray-200 flex justify-end items-center" style="display:block; position:fixed; bottom:20px; right:20px;">
           <loading-button :loading="sending" class="btn-indigo" type="submit">Simpan Training</loading-button>
         </div>
       </form>
@@ -99,9 +109,9 @@ export default {
     DatePicker,
   },
   props: {
-    employees: Object,
+    employees: Array,
     participans: Object,
-    types: Object,
+    types: Array,
   },
   remember: 'form',
   data() {
@@ -114,9 +124,8 @@ export default {
         location: null,
         trainer: null,
         content: null,
-        note: null,
         method: null,
-        participans: this.participans.data,
+        emp: this.employees,
         department_id : this.$parent.department_id,
       },
     }
