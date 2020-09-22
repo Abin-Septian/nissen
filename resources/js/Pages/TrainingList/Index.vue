@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Daftar Training</h1>
+    <h1 class="mb-8 font-bold text-2xl">Daftar Training</h1>
     <div class="mb-6 flex justify-end items-center">
       <inertia-link class="btn-indigo" :href="route('trainings.create')">
         <span class="mr-2">
@@ -12,8 +12,8 @@
         <span class="hidden md:inline">Training</span>
       </inertia-link>
     </div>
-    <div class="bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+    <div class="bg-white rounded shadow overflow-x-auto text-sm">
+      <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Training</th>
           <th class="px-6 pt-6 pb-4">Date</th>
@@ -43,7 +43,7 @@
           </td>
         </tr>
         <tr v-if="trainings.data.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">No training found.</td>
+          <td class="border-t px-6 py-4" colspan="3">No training found.</td>
         </tr>
       </table>
     </div>

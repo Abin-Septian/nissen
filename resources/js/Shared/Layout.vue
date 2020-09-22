@@ -66,7 +66,7 @@ export default {
       accounts: null,
       owner: this.$parent.$data.props.auth.user.role,
       department_id: this.$parent.$data.props.auth.user.department_id,
-      logo: 'http://127.0.0.1:8000/img/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png/2f5e5877ed5247a49def5d410a7c31d6a8dc428ea83b534faeaf8edd95640caf/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.jpg?w=100&h=100&fit=crop',
+      logo: 'http://127.0.0.1:8008/img/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png/2f5e5877ed5247a49def5d410a7c31d6a8dc428ea83b534faeaf8edd95640caf/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.jpg?w=100&h=100&fit=crop',
     }
   },
   methods: {

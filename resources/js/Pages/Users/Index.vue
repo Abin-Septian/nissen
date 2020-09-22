@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Users</h1>
+    <h1 class="mb-8 font-bold text-2xl">Users</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Role:</label>
@@ -9,11 +9,11 @@
           <option value="user">User</option>
           <option value="owner">Owner</option>
         </select>
-        <label class="mt-4 block text-gray-700">Trashed:</label>
+        <label class="mt-4 block text-gray-700">Tipe data (aktif / non aktif):</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
           <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option value="only">Non Aktif</option>
+          <option value="with">Semua</option>
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('users.create')">
@@ -21,8 +21,8 @@
         <span class="hidden md:inline">User</span>
       </inertia-link>
     </div>
-    <div class="bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+    <div class="bg-white rounded shadow overflow-x-auto text-sm">
+      <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Name</th>
           <th class="px-6 pt-6 pb-4">Email</th>

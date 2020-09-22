@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Training Record</h1>
-    <div class="bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+    <h1 class="mb-8 font-bold text-2xl">Training Record</h1>
+    <div class="bg-white rounded shadow overflow-x-auto text-sm">
+      <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">NIK</th>
           <th class="px-6 pt-6 pb-4">Nama</th>
@@ -50,7 +50,7 @@
           </td>
         </tr>
         <tr v-if="employees.length === 0">
-          <td class="border-t px-6 py-4" colspan="4">No employees found.</td>
+          <td class="border-t px-6 py-4" colspan="5">No employees found.</td>
         </tr>
       </table>
     </div>

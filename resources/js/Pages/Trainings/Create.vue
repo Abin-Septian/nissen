@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">
+    <h1 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Tambah Training
     </h1>
@@ -30,8 +30,8 @@
           <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full" label="Materi Training" />
         </div>
         <div class="d-flex justify-content-center"><strong>Daftar Peserta Training</strong></div>
-        <div class="p-4 mb-12 flex flex-wrap">
-          <table class="w-full whitespace-no-wrap mb-4">
+        <div class="bg-white rounded px-4 pb-12 overflow-x-auto text-sm">
+          <table class="table-auto mb-6 w-full">
             <tr class="text-left font-bold">
               <th class="pl-1 pt-6 pb-4" />
               <th class="pl-1 pt-6 pb-4">NIK</th>
@@ -43,10 +43,10 @@
               <th class="pl-1 pt-6 pb-4">Catatan</th>
             </tr>
             <tr v-for="(employee, index) in employees" :key="employee.id">
-              <td class="border-t">
+              <td class="border-t border-l">
                 <input v-model="form.emp[index].checked" :value="employee.id" type="checkbox">
               </td>
-              <td class="border-t">
+              <td class="border-t border-r">
                 <span class="pl-1 py-4 flex items-center">
                   {{ employee.nik }}
                 </span>

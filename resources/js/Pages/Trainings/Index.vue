@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Training List</h1>
+    <h1 class="mb-8 font-bold text-2xl">Training List</h1>
     <div class="mb-6 flex justify-between items-center">
       <inertia-link class="btn-indigo" :href="route('trainings.create')">
         <span>Create</span>
         <span class="hidden md:inline">Training</span>
       </inertia-link>
     </div>
-    <div class="bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+    <div class="bg-white rounded shadow overflow-x-auto text-sm">
+      <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Training</th>
           <th class="px-6 pt-6 pb-4">Date</th>

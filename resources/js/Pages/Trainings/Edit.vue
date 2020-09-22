@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">
+    <h1 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Edit Training
       <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
@@ -31,7 +31,7 @@
           <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full" label="Materi Training" />
         </div>
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <table class="w-full whitespace-no-wrap">
+          <table class="w-full table-auto">
             <tr class="text-left font-bold">
               <th class="pr-1 pt-6 pb-4" />
               <th class="pr-1 pt-6 pb-4">NIK</th>

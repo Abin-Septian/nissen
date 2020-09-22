@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">
+    <h1 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('organizations')">Organizations</inertia-link>
       <span class="text-indigo-400 font-medium">/</span>
       {{ form.name }}
@@ -31,8 +31,8 @@
       </form>
     </div>
     <h2 class="mt-12 font-bold text-2xl">Contacts</h2>
-    <div class="mt-6 bg-white rounded shadow overflow-x-auto">
-      <table class="w-full whitespace-no-wrap">
+    <div class="mt-6 bg-white rounded shadow overflow-x-auto text-sm">
+      <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Name</th>
           <th class="px-6 pt-6 pb-4">City</th>

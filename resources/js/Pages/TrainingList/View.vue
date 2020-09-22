@@ -1,6 +1,6 @@
 <template>
   <div class="container mb-12">
-    <h4 class="mb-8 font-bold text-3xl">
+    <h4 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
     </h4>
@@ -51,7 +51,7 @@
         <h4 class="font-bold">Daftar Peserta Training</h4>
       </div>
       <div class="bg-white rounded shadow">
-        <table class="w-full whitespace-no-wrap">
+        <table class="w-full table-auto">
           <tr class="text-center font-bold">
             <th class="px-6 pt-6 pb-4">NIK</th>
             <th class="px-6 pt-6 pb-4">Nama Peserta</th>

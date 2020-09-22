@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Daftar Departement</h1>
+    <h1 class="mb-8 font-bold text-2xl">Daftar Departement</h1>
     <div class="mb-6 flex justify-between items-center">
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
-        <label class="block text-gray-700">Trashed:</label>
+        <label class="block text-gray-700">Tipe data (aktif / non aktif):</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
           <option :value="null" />
-          <option value="with">With Trashed</option>
-          <option value="only">Only Trashed</option>
+          <option value="only">Non Aktif</option>
+          <option value="with">Semua</option>
         </select>
       </search-filter>
       <inertia-link class="btn-indigo" :href="route('departments.create')">
@@ -18,8 +18,8 @@
         <span class="hidden md:inline">Department</span>
       </inertia-link>
     </div>
-    <div class="bg-white rounded shadow overflow-x-auto">
-      <sorted-table :values="departments.data" class="w-full whitespace-no-wrap">
+    <div class="bg-white rounded shadow overflow-x-auto text-sm">
+      <sorted-table :values="departments.data" class="w-full table-auto">
         <tr class="text-left font-bold">
           <th style="border:0px; padding:1.5rem;">
             <sort-link name="name" class="py-12 text-gray-700">Nama Departement</sort-link>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">
+    <h1 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('departments')">Daftar Departemen</inertia-link>
       <span class="text-indigo-400 font-medium">/</span>
       {{ form.name }}
