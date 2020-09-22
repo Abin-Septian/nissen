@@ -16,7 +16,7 @@ const tailwindcss = require('tailwindcss')
  |
  */
 
-mix.js('resources/js/app.js', 'public/js/app.js')
+mix.script('resources/js/app.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css/app.css')
   .options({
     postCss: [
