@@ -135,14 +135,14 @@ class EmployeesController extends Controller
             ])
         );
 
-        return Redirect::route('employees')->with('success', 'Data Karyawan berhasil di updated.');
+        return Redirect::route('employees')->with('success', 'Data Karyawan berhasil di update.');
     }
 
     public function destroy(Employee $employee)
     {
         $employee->delete();
 
-        return Redirect::route('employees')->with('success', 'Hapus Data Karyawan Berhasil.');
+        return Redirect::route('employees')->with('success', 'Data Karyawan berhasil di non-aktif-kan.');
     }
 
     public function restore(Employee $employee)

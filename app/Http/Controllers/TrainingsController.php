@@ -84,7 +84,7 @@ class TrainingsController extends Controller
 
             DB::commit();
 
-            return Redirect::route('training_list')->with('success', 'Training created.');
+            return Redirect::route('training_list')->with('success', 'Data Training berhasil di simpan.');
         }catch (Exception $e){
             DB::rollback();
         }
@@ -159,7 +159,7 @@ class TrainingsController extends Controller
 
             DB::commit();
 
-            return Redirect::route('training_list')->with('success', 'Training created.');
+            return Redirect::route('training_list')->with('success', 'Data Training berhasil di edit.');
         }catch (Exception $e){
             DB::rollback();
         }
