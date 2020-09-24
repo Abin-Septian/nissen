@@ -5,7 +5,7 @@
       <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset">
         <label class="block text-gray-700">Tipe data (aktif / non aktif):</label>
         <select v-model="form.trashed" class="mt-1 w-full form-select">
-          <option :value="null" />
+          <option :value="null">Aktif</option>
           <option value="only">Non Aktif</option>
           <option value="with">Semua</option>
         </select>
@@ -13,7 +13,7 @@
       <inertia-link class="btn-indigo" :href="route('sections.create')">
         <span class="mr-2"><strong>+</strong></span>
         <span>Tambah</span>
-        <span class="hidden md:inline">Sections</span>
+        <span class="hidden md:inline">Bagian</span>
       </inertia-link>
     </div>
     <div class="bg-white rounded shadow overflow-x-auto text-sm">

@@ -7,7 +7,7 @@
           <th class="px-6 pt-6 pb-4">NIK</th>
           <th class="px-6 pt-6 pb-4">Nama</th>
           <th class="px-6 pt-6 pb-4">Posisi</th>
-          <th class="px-6 pt-6 pb-4">Departement</th>
+          <th class="px-6 pt-6 pb-4">Departemen</th>
           <th class="px-6 pt-6 pb-4" colspan="2">Bagian</th>
         </tr>
         <tr v-for="employee in employees" :key="employee.id" class="hover:bg-gray-100 focus-within:bg-gray-100">

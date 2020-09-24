@@ -6,6 +6,7 @@ use App\Training;
 use Carbon\Carbon;
 use Inertia\Inertia;
 use App\TrainingType;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -98,20 +99,71 @@ class TrainingsController extends Controller
                 'id'        => $training->id,
                 'title'     => $training->title,
                 'date'      => $training->date,
-                'type'      => $training->type->only('type'),
+                'type'      => $training->type->only('id'),
                 'location'  => $training->location,
                 'trainer'   => $training->trainer,
                 'content'   => $training->content,
                 'method'    => $training->method,
+                'department_id' => $training->department_id,
             ],
             'employees' => $employees,
             'types' => TrainingType::all(),
         ]);
     }
     
-    public function update(Request $request, $id)
+    public function update(Training $training)
     {
-        //
+        $employees = Request::only(['employee']);
+
+        DB::beginTransaction();
+
+        try{
+
+            $training->update(
+                Request::validate([
+                    'title'         => ['required', 'string'],
+                    'date'          => ['required', 'date'],
+                    'type_id'       => ['required', 'integer'],
+                    'location'      => ['required', 'string'],
+                    'trainer'       => ['required', 'string'],
+                    'method'        => ['required', 'string'],
+                    'content'       => ['required', 'string'],
+                    'department_id' => ['required', 'integer'],
+                ])
+            );
+
+            DB::table('employee_training')->where('training_id', '=', $training->id)->delete();
+
+            foreach($employees['employee'] as $key => $value){
+                
+                $checked    = $value['participant'];
+                $result     = $value['result'] == true ? 1 : 0;
+                $score      = $value['score'];
+                $note       = $value['note'];
+                $employeeId = $value['id'];
+
+                if($checked == 1){
+                    $id = DB::table('employee_training')->insertGetId(
+                    array("employee_id" => $employeeId, 
+                          "training_id" => $training->id,
+                          "result" => $result,
+                          "score" => $score,
+                          "note" => $note,
+                          "participant" => $checked,
+                          "created_at"  => Carbon::now(), # new \Datetime()
+                          "updated_at"  => Carbon::now())  # new \Datetime())
+                    );
+                }
+            
+            }
+
+            DB::commit();
+
+            return Redirect::route('training_list')->with('success', 'Training created.');
+        }catch (Exception $e){
+            DB::rollback();
+        }
+        
     }
 
     /**

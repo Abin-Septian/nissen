@@ -36,7 +36,7 @@
               <th class="pl-1 pt-6 pb-4" />
               <th class="pl-1 pt-6 pb-4">NIK</th>
               <th class="pl-1 pt-6 pb-4">Nama</th>
-              <th class="pl-1 pt-6 pb-4">Departement</th>
+              <th class="pl-1 pt-6 pb-4">Departemen</th>
               <th class="pl-1 pt-6 pb-4">Bagian</th>
               <th class="pl-1 pt-6 pb-4">Hasil</th>
               <th class="pl-1 pt-6 pb-4">Nilai</th>

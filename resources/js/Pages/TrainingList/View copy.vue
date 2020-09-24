@@ -62,7 +62,7 @@
               <th class="text-center">No.</th>
               <th>NIK</th>
               <th>Nama</th>
-              <th>Department</th>
+              <th>Departemen</th>
               <th>Nilai</th>
               <th>Hasil</th>
             </tr>

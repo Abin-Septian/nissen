@@ -19,7 +19,7 @@
           <!-- type Select -->
           <select-input v-model="form.type_id" :errors="$page.errors.type_id" class="pr-6 pb-8 w-full lg:w-1/2" label="Tipe">
             <option :value="null" />
-            <option v-for="type in types" :key="type.id" :value="type_id">{{ type.type }}</option>
+            <option v-for="type in types" :key="type.id" :value="type.id">{{ type.type }}</option>
           </select-input>
         
           <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Lokasi" />
@@ -30,21 +30,24 @@
           
           <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full" label="Materi Training" />
         </div>
-        <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <table class="w-full table-auto">
+        <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+          <button class="btn btn-danger hover:underline" tabindex="-1" type="button" @click="destroy">Delete Training</button>
+        </div>
+        <div class="p-8 mb-12 flex flex-wrap">
+          <table class="w-full table-auto mb-12">
             <tr class="text-left font-bold">
               <th class="pr-1 pt-6 pb-4" />
               <th class="pr-1 pt-6 pb-4">NIK</th>
               <th class="pr-1 pt-6 pb-4">Nama</th>
-              <th class="pr-1 pt-6 pb-4">Department</th>
-              <th class="pr-1 pt-6 pb-4">Section</th>
+              <th class="pr-1 pt-6 pb-4">Departemen</th>
+              <th class="pr-1 pt-6 pb-4">Bagian</th>
               <th class="pr-1 pt-6 pb-4">Hasil</th>
               <th class="pr-1 pt-6 pb-4">Nilai</th>
               <th class="pr-1 pt-6 pb-4">Catatan</th>
             </tr>
             <tr v-for="(employee, index) in employees" :key="index">
               <td class="border-t">
-                <input v-model="form.employee[index].participant" :value="employee.id" type="checkbox">
+                <input v-model="form.employee[index].participant" type="checkbox">
               </td>
               <td class="border-t">
                 <span class="pr-1 py-4 flex items-center">
@@ -81,7 +84,7 @@
             </tr>
           </table>
         </div>
-        <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
+        <div class="px-8 py-4 bg-transparant border-t border-gray-200 flex justify-end items-center" style="display:block; position:fixed; bottom:20px; right:20px;">
           <loading-button :loading="sending" class="btn-indigo" type="submit">Simpan Training</loading-button>
         </div>
       </form>
@@ -120,11 +123,12 @@ export default {
       form: {
         title: this.training.title,
         date: this.training.date,
-        type_id: this.training.type_id,
+        type_id: this.training.type.id,
         location: this.training.location,
         trainer: this.training.trainer,
         content: this.training.content,
         method: this.training.method,
+        department_id : this.training.department_id,
         employee: this.employees,
       },
     }
@@ -132,8 +136,13 @@ export default {
   methods: {
     submit() {
       this.sending = true
-      this.$inertia.post(this.route('trainings.update'), this.form)
+      this.$inertia.put(this.route('trainings.update', this.training.id), this.form)
         .then(() => this.sending = false)
+    },
+    destroy() {
+      if (confirm(`Apakah anda yakin akan menghapus ${this.form.title} ?`)) {
+        this.$inertia.delete(this.route('trainings.destroy', this.training.id))
+      }
     },
   },
 }

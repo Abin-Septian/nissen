@@ -43,7 +43,7 @@
           </div>
           <div class="form-group col-md-12 col-sm-12">
             <label for="title">Materi Training</label>
-            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.content">
+            <textarea id="title" class="form-control" style="white-space:pre;" disabled :value="training.content" />
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
           <tr class="text-center font-bold">
             <th class="px-6 pt-6 pb-4">NIK</th>
             <th class="px-6 pt-6 pb-4">Nama Peserta</th>
-            <th class="px-6 pt-6 pb-4">Departement</th>
+            <th class="px-6 pt-6 pb-4">Departemen</th>
             <th class="px-6 pt-6 pb-4">Hasil</th>
             <th class="px-6 pt-6 pb-4">Score</th>
             <th class="px-6 pt-6 pb-4">Catatan</th>
@@ -112,6 +112,7 @@ import Layout from '@/Shared/Layout'
 import mapValues from 'lodash/mapValues'
 import pickBy from 'lodash/pickBy'
 import throttle from 'lodash/throttle'
+import TextArea from '@/Shared/TextArea'
 import jsPDF from 'jspdf' 
 import html2canvas from 'html2canvas'
 // import Icon from '@/Shared/Icon'

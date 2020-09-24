@@ -16,7 +16,7 @@
       <table class="w-full table-auto">
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Training</th>
-          <th class="px-6 pt-6 pb-4">Date</th>
+          <th class="px-6 pt-6 pb-4">Tanggal Training</th>
           <th class="px-6 pt-6 pb-4" colspan="2">Trainer</th>
         </tr>
         <tr v-for="training in trainings.data" :key="training.id" class="hover:bg-gray-100 focus-within:bg-gray-100">

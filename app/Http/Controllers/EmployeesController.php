@@ -20,7 +20,7 @@ class EmployeesController extends Controller
                 ->with('department')
                 ->orderByName()
                 ->filter(Request::only('search', 'trashed'))
-                ->paginate(25)
+                ->paginate(10)
                 ->transform(function ($employee) {
                     return [
                         'id' => $employee->id,

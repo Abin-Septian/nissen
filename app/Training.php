@@ -42,7 +42,7 @@ class Training extends Model
         `departments`.`name` AS `dname`,
         `sections`.`name` AS `sname`,
         (SELECT
-          COUNT(`participant`)
+          `participant`
         FROM
           `employee_training`
         WHERE `employee_id` = `employees`.`id`
