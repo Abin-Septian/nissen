@@ -47,7 +47,7 @@
             <tbody slot="body" slot-scope="sort">
               <tr v-for="(employee, index) in sort.values" :key="employee.id">
                 <td class="border-t border-l">
-                  <input v-model="form.emp[index].checked" :value="employee.id" type="checkbox">
+                  <input v-model="form.emp[index].checked" :value="employees.id" type="checkbox">
                 </td>
                 <td class="border-t border-r">
                   <span class="pl-1 py-4 flex items-center">
