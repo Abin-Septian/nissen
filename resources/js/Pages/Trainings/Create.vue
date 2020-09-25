@@ -30,56 +30,60 @@
           <text-area v-model="form.content" :errors="$page.errors.content" class="pr-6 pb-8 w-full" label="Materi Training" />
         </div>
         <div class="d-flex justify-content-center"><strong>Daftar Peserta Training</strong></div>
-        <div class="bg-white rounded px-4 pb-12 overflow-x-auto text-sm">
-          <table class="table-auto mb-6 w-full">
+        <div class="bg-white rounded px-4 pb-12 overflow-x-auto text-sm flex content-center">
+          <sorted-table :values="employees" class="w-full mb-6 table-auto">
             <tr class="text-left font-bold">
               <th class="pl-1 pt-6 pb-4" />
-              <th class="pl-1 pt-6 pb-4">NIK</th>
-              <th class="pl-1 pt-6 pb-4">Nama</th>
-              <th class="pl-1 pt-6 pb-4">Departemen</th>
-              <th class="pl-1 pt-6 pb-4">Bagian</th>
+              <th class="pl-1 pt-6 pb-4">
+                <sort-link name="nik" class="py-12 text-gray-700">NIK</sort-link>
+              </th>
+              <th class="pl-1 pt-6 pb-4"><sort-link name="name" class="py-12 text-gray-700">Nama</sort-link></th>
+              <th class="pl-1 pt-6 pb-4"><sort-link name="dname" class="py-12 text-gray-700">Departemen</sort-link></th>
+              <th class="pl-1 pt-6 pb-4"><sort-link name="sname" class="py-12 text-gray-700">Bagian</sort-link></th>
               <th class="pl-1 pt-6 pb-4">Hasil</th>
               <th class="pl-1 pt-6 pb-4">Nilai</th>
               <th class="pl-1 pt-6 pb-4">Catatan</th>
             </tr>
-            <tr v-for="(employee, index) in employees" :key="employee.id">
-              <td class="border-t border-l">
-                <input v-model="form.emp[index].checked" :value="employee.id" type="checkbox">
-              </td>
-              <td class="border-t border-r">
-                <span class="pl-1 py-4 flex items-center">
-                  {{ employee.nik }}
-                </span>
-              </td>
-              <td class="border-t">
-                <span class="pl-1 py-4 flex items-center">
-                  {{ employee.name }}
-                </span>
-              </td>
-              <td class="border-t">
-                <span class="pl-1 py-4 flex items-center">
-                  {{ employee.dname }}
-                </span>
-              </td>
-              <td class="border-t">
-                <span class="pl-1 py-4 flex items-center">
-                  {{ employee.sname }}
-                </span>
-              </td>
-              <td class="border-t">
-                <select-input v-model="form.emp[index].result" :value="employees.result" class="w-full">
-                  <option :value="true">Lulus</option>
-                  <option :value="false">Tidak Lulus</option>
-                </select-input>
-              </td>
-              <td class="border-t">
-                <input v-model="form.emp[index].score" type="text" class="form-input">
-              </td>
-              <td class="border-t">
-                <input v-model="form.emp[index].note" type="text" class="form-input">
-              </td>
-            </tr>
-          </table>
+            <tbody slot="body" slot-scope="sort">
+              <tr v-for="(employee, index) in sort.values" :key="employee.id">
+                <td class="border-t border-l">
+                  <input v-model="form.emp[index].checked" :value="employee.id" type="checkbox">
+                </td>
+                <td class="border-t border-r">
+                  <span class="pl-1 py-4 flex items-center">
+                    {{ employee.nik }}
+                  </span>
+                </td>
+                <td class="border-t">
+                  <span class="pl-1 py-4 flex items-center">
+                    {{ employee.name }}
+                  </span>
+                </td>
+                <td class="border-t">
+                  <span class="pl-1 py-4 flex items-center">
+                    {{ employee.dname }}
+                  </span>
+                </td>
+                <td class="border-t">
+                  <span class="pl-1 py-4 flex items-center">
+                    {{ employee.sname }}
+                  </span>
+                </td>
+                <td class="border-t">
+                  <select-input v-model="form.emp[index].result" :value="employees.result" class="w-full">
+                    <option :value="true">Lulus</option>
+                    <option :value="false">Tidak Lulus</option>
+                  </select-input>
+                </td>
+                <td class="border-t">
+                  <input v-model="form.emp[index].score" type="text" class="form-input">
+                </td>
+                <td class="border-t">
+                  <input v-model="form.emp[index].note" type="text" class="form-input">
+                </td>
+              </tr>
+            </tbody>
+          </sorted-table>
         </div>
         <div class="px-8 py-4 bg-transparant border-t border-gray-200 flex justify-end items-center" style="display:block; position:fixed; bottom:20px; right:20px;">
           <loading-button :loading="sending" class="btn-indigo" type="submit">Simpan Training</loading-button>

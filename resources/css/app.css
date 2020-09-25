@@ -6,7 +6,6 @@
 @import "tailwindcss/components";
 @import "buttons";
 @import "form";
-@import "vue2-datepicker/index.css";
 @import "bootstrap";
 @import "nprogress";
 
