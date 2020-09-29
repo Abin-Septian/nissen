@@ -85,7 +85,7 @@
           </table>
         </div>
         <div class="px-8 py-4 bg-transparant border-t border-gray-200 flex justify-end items-center" style="display:block; position:fixed; bottom:20px; right:20px;">
-          <loading-button :loading="sending" class="btn-indigo" type="submit">Edit Training</loading-button>
+          <loading-button :loading="sending" class="btn-indigo" type="submit">Update Training</loading-button>
         </div>
       </form>
     </div>

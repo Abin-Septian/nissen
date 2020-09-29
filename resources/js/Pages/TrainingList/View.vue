@@ -6,7 +6,7 @@
     </h4>
     <div class="mb-6 flex justify-end items-center">
       <inertia-link class="btn-indigo mr-3" :href="route('trainings.edit', training.id)">
-        <span>Edit</span>
+        <span>Update</span>
         <span class="hidden md:inline">Training</span>
       </inertia-link>
       <button class="btn-indigo" @click="download">
