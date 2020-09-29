@@ -23,7 +23,10 @@
         
           <text-input v-model="form.location" :errors="$page.errors.location" class="pr-6 pb-8 w-full lg:w-1/2" label="Lokasi" />
         
-          <text-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Metode Evaluasi" />
+          <select-input v-model="form.method" :errors="$page.errors.method" class="pr-6 pb-8 w-full lg:w-1/2" label="Metode Evaluasi">
+            <option :value="null" />
+            <option v-for="(met, index) in methods" :key="index" :value="met.name">{{ met.name }}</option>
+          </select-input>
         
           <text-input v-model="form.trainer" :errors="$page.errors.trainer" class="pr-6 pb-8 w-full lg:w-1/2" label="Trainer" />
           
@@ -112,6 +115,7 @@ export default {
     employees: Array,
     participans: Object,
     types: Array,
+    methods: Array,
   },
   remember: 'form',
   data() {

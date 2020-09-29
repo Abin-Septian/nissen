@@ -22,6 +22,13 @@ class Training extends Model
         return $this->belongsTo(TrainingType::class);
     }
 
+    public static function methods(){
+        $data = DB::table('methods')
+                    ->get();
+                    
+        return $data;
+    }
+
     public static function retrieveData(){
         $data = DB::table('employees')
                     ->leftJoin('departments', 'departments.id', '=', 'employees.department_id')

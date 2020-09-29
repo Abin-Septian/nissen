@@ -29,10 +29,12 @@ class TrainingsController extends Controller
     public function create()
     {
         $employees = Training::retrieveData();
+        $methods = Training::methods();
                         
         return Inertia::render('Trainings/Create',[
             'employees' => $employees,
             'types' => TrainingType::all(),
+            'methods' => $methods,
         ]);
     }
 
@@ -93,6 +95,7 @@ class TrainingsController extends Controller
     public function edit(Training $training)
     {
         $employees = Training::retrieveEdit($training->id);
+        $methods = Training::methods();
                         
         return Inertia::render('Trainings/Edit',[
             'training' => [
@@ -107,6 +110,7 @@ class TrainingsController extends Controller
                 'department_id' => $training->department_id,
             ],
             'employees' => $employees,
+            'methods' => $methods,
             'types' => TrainingType::all(),
         ]);
     }
