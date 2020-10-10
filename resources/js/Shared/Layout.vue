@@ -6,7 +6,7 @@
         <div class="md:flex flex-shrink-0">
           <div class="bg-white md:flex-shrink-0 md:w-56 px-6 flex items-center justify-between md:justify-center">
             <inertia-link class="mt-1" href="/">
-              <img class="block w-20 l-20" :src="logo">
+              <img class="block w-30 l-30" src="../../../storage/app/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png">
             </inertia-link>
             <dropdown class="md:hidden" placement="bottom-end">
               <svg class="fill-white w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
