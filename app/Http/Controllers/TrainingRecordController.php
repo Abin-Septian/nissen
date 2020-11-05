@@ -17,7 +17,8 @@ class TrainingRecordController extends Controller
         $employees = Employee::employeeTrainings($request);
 
         return Inertia::render('TrainingRecord/Index', [
-            'employees' => $employees
+            'filters' => Request::all('search', 'trashed'),
+            'employees' => $employees,
         ]);
     }
 
@@ -38,7 +39,7 @@ class TrainingRecordController extends Controller
                 ->get()
                 ->transform(function ($trainings) {
                     return [
-                        'title' => $trainings->title,
+                        'name' => $trainings->name,
                         'result' => $trainings->pivot->result,
                         'score' => $trainings->pivot->score,
                     ];

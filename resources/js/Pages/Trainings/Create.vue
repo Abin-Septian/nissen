@@ -7,11 +7,11 @@
     <div class="bg-white rounded shadow overflow-hidden max-3xl">
       <form @submit.prevent="submit">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.title" :errors="$page.errors.title" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama Training" />
+          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama Training" />
 
           <div class="pr-6 pb-8 w-full lg:w-1/2">
             <label class="form-label" for="date-entry">Tanggal:</label>
-            <date-picker id="date-entry" v-model="form.date" valueType="format" style="width: 100%;" placeholder="Pilih Tanggal" input-class="form-input d-block" class="d-block" />
+            <date-picker id="date-entry" v-model="form.date" value-type="format" style="width: 100%;" placeholder="Pilih Tanggal" input-class="form-input d-block" class="d-block" />
             <div v-if="$page.errors.date_entry" class="form-error">{{ $page.errors.date_entry }}</div>
           </div>
         
@@ -122,7 +122,7 @@ export default {
     return {
       sending: false,
       form: {
-        title: null,
+        name: null,
         date: null,
         type_id: null,
         location: null,
@@ -133,6 +133,13 @@ export default {
         department_id : this.$parent.department_id,
       },
     }
+  },
+  watch: {
+    callBack () {
+      window.onbeforeunload(
+        window.confirm('Do you really want to leave? You have unsaved changes!')
+      )
+    }, 
   },
   methods: {
     submit() {

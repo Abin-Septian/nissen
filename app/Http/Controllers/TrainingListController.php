@@ -17,21 +17,33 @@ class TrainingListController extends Controller
     {
         if($request->admin == 'true'){
             return Inertia::render('TrainingList/Index', [
+                'filters' => Request::all('search', 'trashed'),
                 'trainings' => Auth::user()->account->trainings()
-                    ->orderBy('title')
+                    ->orderBy('name')
                     ->filter(Request::only('search', 'trashed'))
                     ->paginate()
-                    ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
+                    ->transform(function ($training) {
+                        return [
+                            'id' => $training->id,
+                            'name' => $training->name,
+                            'date' => $training->date,
+                            'trainer' => $training->trainer,
+                            'deleted_at' => $training->deleted_at,
+                            'department' => $training->department ? $training->department->only('name') : null,
+                            'type' => $training->type ? $training->type->only('type') : null,
+                        ];
+                    }),
             ]);
         }
         else{
             return Inertia::render('TrainingList/Index', [
+                'filters' => Request::all('search', 'trashed'),
                 'trainings' => Auth::user()->account->trainings()
                     ->where('department_id','=', $request->idDepartment)
-                    ->orderBy('title')
+                    ->orderBy('name')
                     ->filter(Request::only('search', 'trashed'))
                     ->paginate()
-                    ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
+                    ->only('id', 'name', 'date', 'trainer', 'deleted_at'),
             ]);
         }
     }
@@ -41,7 +53,38 @@ class TrainingListController extends Controller
         return Inertia::render('TrainingList/View',[
             'training' => [
                 'id'        => $training->id,
-                'title'     => $training->title,
+                'name'     => $training->name,
+                'date'      => $training->date,
+                'type'      => $training->type->only('type'),
+                'location'  => $training->location,
+                'trainer'   => $training->trainer,
+                'content'   => $training->content,
+                'method'    => $training->method,
+            ],
+            'participants' => Training::find($training->id)->TrainingReport()
+                ->where('employee_training.participant','=',1)
+                ->get()
+                ->transform(function ($participants) {
+                    return [
+                        'id' => $participants->id,
+                        'nik' => $participants->nik,
+                        'name' => $participants->name,
+                        'department' => $participants->department->name,
+                        'result' => $participants->pivot->result,
+                        'score' => $participants->pivot->score,
+                        'note' => $participants->pivot->note,
+                    ];
+                }),
+        ]
+    );
+    }
+
+    public function preview(Training $training)
+    {
+        return Inertia::render('TrainingList/View',[
+            'training' => [
+                'id'        => $training->id,
+                'name'     => $training->name,
                 'date'      => $training->date,
                 'type'      => $training->type->only('type'),
                 'location'  => $training->location,

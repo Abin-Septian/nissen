@@ -99,6 +99,7 @@ Route::put('trainings/{training}/restore')->name('trainings.restore')->uses('Tra
 // Trainings List
 Route::get('training_list')->name('training_list')->uses('TrainingListController@index')->middleware('remember', 'auth');
 Route::get('training_list/{training}')->name('training_list.show')->uses('TrainingListController@show')->middleware('auth');
+Route::get('training_preview/{training}')->name('training.preview')->uses('PreviewController@training_preview')->middleware('auth');
 
 // Training Record
 Route::get('training_record')->name('training_record')->uses('TrainingRecordController@index')->middleware('remember', 'auth');

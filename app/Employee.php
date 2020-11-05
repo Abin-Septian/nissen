@@ -41,6 +41,9 @@ class Employee extends Model
 
         $condition = $request->admin == 'true' ? '' : "AND `employees`.`department_id` = $request->idDepartment" ;
 
+        $trashed = $request->trashed == 'only' ? "AND `employees`.`deleted_at` IS NOT NULL" : 
+        $trashed = $request->trashed == 'with' ? "" : "AND `employees`.`deleted_at` IS NULL";
+
         $query = "SELECT
                     `employees`.`id` as `id` ,
                     `employees`.`name` as `name`,
@@ -57,11 +60,26 @@ class Employee extends Model
                     LEFT JOIN `positions`
                     ON `positions`.`id` = `employees`.`position_id`
                 WHERE `employees`.`id` IN
-                    (SELECT
-                    `employee_id`
-                    FROM
-                    `employee_training`) 
-                    $condition";
+                    (
+                        SELECT
+                        `employee_id`
+                        FROM
+                        `employee_training`
+                        LEFT JOIN `trainings`
+                        ON `employee_training`.`training_id` = `trainings`.`id`
+                        WHERE `trainings`.`deleted_at` IS NULL
+                    ) 
+                $condition
+                $trashed
+                AND 
+                (
+                    `employees`.`name` LIKE '%$request->search%'
+                    OR `employees`.`nik` LIKE '%$request->search%'
+                    OR `departments`.`name` LIKE '%$request->search%'
+                    OR `positions`.`name` LIKE '%$request->search%'
+                    OR `sections`.`name` LIKE '%$request->search%'
+                )
+                ";
 
         $data = DB::select($query);
         

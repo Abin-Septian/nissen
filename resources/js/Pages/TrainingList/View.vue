@@ -2,24 +2,24 @@
   <div class="container mb-12">
     <h4 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
+      <span class="text-indigo-400 font-medium">/</span> {{ training.name }}
     </h4>
     <div class="mb-6 flex justify-end items-center">
       <inertia-link class="btn-indigo mr-3" :href="route('trainings.edit', training.id)">
-        <span>Update</span>
+        <span>Edit</span>
         <span class="hidden md:inline">Training</span>
       </inertia-link>
-      <button class="btn-indigo" @click="download">
-        <span>Cetak</span>
-        <span class="hidden md:inline">Dokumen</span>
-      </button>
+      <inertia-link class="btn-indigo mr-3" :href="route('training.preview', training.id)">
+        <span>Preview</span>
+        <span class="hidden md:inline">Training</span>
+      </inertia-link>
     </div>
     <div ref="content">
       <div class="card p-4">
         <div class="row">
           <div class="form-group col-md-6 col-sm-12">
             <label for="title">Nama Training</label>
-            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.title">
+            <input id="title" type="text" class="form-control" aria-describedby="emailHelp" disabled :value="training.name">
           </div>
           <div class="form-group col-md-6 col-sm-12">
             <label for="title">Tanggal Training</label>
@@ -112,7 +112,7 @@ import Layout from '@/Shared/Layout'
 import mapValues from 'lodash/mapValues'
 import pickBy from 'lodash/pickBy'
 import throttle from 'lodash/throttle'
-import TextArea from '@/Shared/TextArea'
+// import TextArea from '@/Shared/TextArea'
 import jsPDF from 'jspdf' 
 import html2canvas from 'html2canvas'
 // import Icon from '@/Shared/Icon'
@@ -148,7 +148,7 @@ export default {
     },
     download(){
       const doc = new jsPDF('p', 'mm', 'a4')
-      const name = this.training.title
+      const name = this.training.name
       /** WITH CSS */
       // var canvasElement = document.createElement('canvas')
 

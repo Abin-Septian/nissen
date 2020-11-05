@@ -57,7 +57,7 @@
               </div>
             </td><td class="border-t">
               <div class="px-6 py-4 flex items-center">
-                {{ training.title }}
+                {{ training.name }}
               </div>
             </td>
             <td class="border-t">

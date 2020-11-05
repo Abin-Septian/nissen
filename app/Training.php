@@ -10,11 +10,16 @@ class Training extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'date', 'type_id', 'location', 'method', 'trainer', 'content', 'note', 'department_id'];
+    protected $fillable = ['name', 'date', 'type_id', 'location', 'method', 'trainer', 'content', 'note', 'department_id'];
 
     public function User()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 
     public function Type()

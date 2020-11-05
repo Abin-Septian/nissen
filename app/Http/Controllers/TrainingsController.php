@@ -19,10 +19,10 @@ class TrainingsController extends Controller
         return Inertia::render('Trainings/Index', [
             'filters' => Request::all('search', 'trashed'),
             'trainings' => Auth::user()->account->trainings()
-                ->orderBy('title')
+                ->orderBy('name')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
-                ->only('id', 'title', 'date', 'trainer', 'deleted_at'),
+                ->only('id', 'name', 'date', 'trainer', 'deleted_at'),
         ]);
     }
 
@@ -48,7 +48,7 @@ class TrainingsController extends Controller
 
             Auth::user()->account->trainings()->create(
                 Request::validate([
-                    'title'         => ['required', 'string'],
+                    'name'         => ['required', 'string'],
                     'date'          => ['required', 'date'],
                     'type_id'       => ['required', 'integer'],
                     'location'      => ['required', 'string'],
@@ -100,7 +100,7 @@ class TrainingsController extends Controller
         return Inertia::render('Trainings/Edit',[
             'training' => [
                 'id'        => $training->id,
-                'title'     => $training->title,
+                'name'     => $training->name,
                 'date'      => $training->date,
                 'type'      => $training->type->only('id'),
                 'location'  => $training->location,
@@ -125,7 +125,7 @@ class TrainingsController extends Controller
 
             $training->update(
                 Request::validate([
-                    'title'         => ['required', 'string'],
+                    'name'         => ['required', 'string'],
                     'date'          => ['required', 'date'],
                     'type_id'       => ['required', 'integer'],
                     'location'      => ['required', 'string'],
@@ -180,6 +180,6 @@ class TrainingsController extends Controller
     {
         $training->delete();
 
-        return Redirect::route('employees')->with('success', 'Hapus Data Training Berhasil.');
+        return Redirect::route('training_list')->with('success', 'Hapus Data Training Berhasil.');
     }
 }

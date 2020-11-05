@@ -3,12 +3,12 @@
     <h1 class="mb-8 font-bold text-2xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('training_list')">Daftar Training</inertia-link>
       <span class="text-indigo-400 font-medium">/</span> Edit Training
-      <span class="text-indigo-400 font-medium">/</span> {{ training.title }}
+      <span class="text-indigo-400 font-medium">/</span> {{ training.name }}
     </h1>
     <div class="bg-white rounded shadow overflow-hidden max-3xl">
       <form @submit.prevent="submit">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.title" :errors="$page.errors.title" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama Training" />
+          <text-input v-model="form.name" :errors="$page.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Nama Training" />
 
           <div class="pr-6 pb-8 w-full lg:w-1/2">
             <label class="form-label" for="date-entry">Tanggal:</label>
@@ -125,7 +125,7 @@ export default {
     return {
       sending: false,
       form: {
-        title: this.training.title,
+        name: this.training.name,
         date: this.training.date,
         type_id: this.training.type.id,
         location: this.training.location,
@@ -144,7 +144,7 @@ export default {
         .then(() => this.sending = false)
     },
     destroy() {
-      if (confirm(`Apakah anda yakin akan menghapus ${this.form.title} ?`)) {
+      if (confirm(`Apakah anda yakin akan menghapus ${this.form.name} ?`)) {
         this.$inertia.delete(this.route('trainings.destroy', this.training.id))
       }
     },
