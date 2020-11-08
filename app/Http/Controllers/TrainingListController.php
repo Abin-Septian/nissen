@@ -43,7 +43,17 @@ class TrainingListController extends Controller
                     ->orderBy('name')
                     ->filter(Request::only('search', 'trashed'))
                     ->paginate()
-                    ->only('id', 'name', 'date', 'trainer', 'deleted_at'),
+                    ->transform(function ($training) {
+                        return [
+                            'id' => $training->id,
+                            'name' => $training->name,
+                            'date' => $training->date,
+                            'trainer' => $training->trainer,
+                            'deleted_at' => $training->deleted_at,
+                            'department' => $training->department ? $training->department->only('name') : null,
+                            'type' => $training->type ? $training->type->only('type') : null,
+                        ];
+                    }),
             ]);
         }
     }
