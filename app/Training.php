@@ -110,7 +110,7 @@ class Training extends Model
             ->orWhereHas('department', function ($query) use ($search) {
               $query->where('name', 'like', '%'.$search.'%');
           })
-          ->orWhereHas('type', function ($query) use ($search) {
+          ->orWhereHas('Type', function ($query) use ($search) {
               $query->where('name', 'like', '%'.$search.'%');
           });
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
