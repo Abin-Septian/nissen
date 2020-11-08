@@ -141,7 +141,7 @@ class TrainingsController extends Controller
             foreach($employees['employee'] as $key => $value){
                 
                 $checked    = $value['participant'];
-                $result     = $value['result'] == true ? 1 : 0;
+                $result     = $value['result'] == 'true' ? 1 : 0;
                 $score      = $value['score'];
                 $note       = $value['note'];
                 $employeeId = $value['id'];

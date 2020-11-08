@@ -1,6 +1,6 @@
 .tBorder {
   border:1px solid black;
   border-collapse: collapse;  
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
 }

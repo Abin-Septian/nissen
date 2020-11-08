@@ -16,101 +16,107 @@
       </button>
     </div>
     <div ref="content">
-      <table style="width:100%;" class="tBorder text-center m-4">
-        <col width="25%">
-        <col width="25%">
-        <col width="25%">
-        <col width="25%">
+      <div class="m-4 pt-2">
+        <table style="width:100%;" class="tBorder text-center m-4">
+          <col width="25%">
+          <col width="25%">
+          <col width="25%">
+          <col width="25%">
 
-        <thead class="tBorder">
-          <tr>
-            <td row>
-              <img class="block w-20 l-30" src="../../../../storage/app/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png">
-            </td>
-            <td colspan="2" class="text-center font-bold text-xl">
-              <br>
-              <br>
-              Laporan Training
-              <br>
-              <br>
-            </td>
-            <td />
-          </tr>
-          <tr class="tBorder">
-            <td class="tBorder">Nama Training</td>
-            <td class="tBorder font-bold">{{ training.name }}</td>
-            <td class="tBorder">Tanggal Training</td>
-            <td class="tBorder">{{ training.date }}</td>
-          </tr>
-          <tr class="tBorder">
-            <td class="tBorder">Lokasi Training</td>
-            <td class="tBorder">{{ training.location }}</td>
-            <td class="tBorder">Trainer</td>
-            <td class="tBorder">{{ training.trainer }}</td>
-          </tr>
-          <tr class="tBorder">
-            <td class="tBorder">Metode Training</td>
-            <td class="tBorder">{{ training.method }}</td>
-            <td class="tBorder">Jenis Training</td>
-            <td class="tBorder">{{ training.type.type }}</td>
-          </tr>
-          <tr class="tBorder">
-            <td colspan="4" class="tBorder">Peserta Training</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="4">
-              <table style="width:100%">
-                <col style="width:20%">
-                <col style="width:30%">
-                <col style="width:20%">
-                <col style="width:10%">
-                <col style="width:10%">
-                <col style="width:10%">
+          <thead class="tBorder">
+            <tr>
+              <td row>
+                <img class="block w-20 l-30 ml-4" src="../../../../storage/app/users/n1bBG54O1vlr3S6xpeDaMClFI8IerB8AIaIepswA.png">
+              </td>
+              <td colspan="2" class="text-center font-bold text-xl">
+                <br>
+                <br>
+                Laporan Training
+                <br>
+                <br>
+              </td>
+              <td />
+            </tr>
+            <tr class="tBorder">
+              <td class="tBorder">Nama Training</td>
+              <td class="tBorder font-bold">{{ training.name }}</td>
+              <td class="tBorder">Tanggal Training</td>
+              <td class="tBorder">{{ training.date }}</td>
+            </tr>
+            <tr class="tBorder">
+              <td class="tBorder">Lokasi Training</td>
+              <td class="tBorder">{{ training.location }}</td>
+              <td class="tBorder">Trainer</td>
+              <td class="tBorder">{{ training.trainer }}</td>
+            </tr>
+            <tr class="tBorder">
+              <td class="tBorder">Metode Training</td>
+              <td class="tBorder">{{ training.method }}</td>
+              <td class="tBorder">Jenis Training</td>
+              <td class="tBorder">{{ training.type.type }}</td>
+            </tr>
+            <tr class="tBorder">
+              <td colspan="4" class="tBorder font-bold">Peserta Training</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="4">
+                <table style="width:100%">
+                  <col style="width:20%">
+                  <col style="width:30%">
+                  <col style="width:20%">
+                  <col style="width:10%">
+                  <col style="width:10%">
+                  <col style="width:10%">
 
-                <tr>
-                  <th class="tBorder">NIK</th>
-                  <th class="tBorder">Nama Peserta</th>
-                  <th class="tBorder">Departemen</th>
-                  <th class="tBorder">Hasil</th>
-                  <th class="tBorder">Score</th>
-                  <th class="tBorder">Catatan</th>
-                </tr>
-                <tr v-for="participant in participants" :key="participant.id" class="tBorder">
-                  <td class="tBorder">
-                    {{ participant.nik }}
-                  </td>
-                  <td class="tBorder">
-                    {{ participant.name }}
-                  </td>
-                  <td class="tBorder">
-                    {{ participant.department }}
-                  </td>
-                  <td class="tBorder">
-                    <div class="rounded green">
-                      {{ participant.result ? 'Lulus' : 'Tidak Lulus' }}
-                    </div>
-                  </td>
-                  <td class="tBorder">
-                    <div class="rounded green">
-                      {{ participant.score }}
-                    </div>
-                  </td>
-                  <td class="tBorder">
-                    <div class="rounded green">
-                      {{ participant.note }}
-                    </div>
-                  </td>
-                </tr>
-                <tr v-if="participants.length === 0">
-                  <td class="tBorder px-6 py-4" colspan="4">No participant found.</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  <tr>
+                    <th class="tBorder">NIK</th>
+                    <th class="tBorder">Nama Peserta</th>
+                    <th class="tBorder">Departemen</th>
+                    <th class="tBorder">Hasil</th>
+                    <th class="tBorder">Score</th>
+                    <th class="tBorder">Catatan</th>
+                  </tr>
+                  <tr v-for="participant in participants" :key="participant.id" class="tBorder">
+                    <td class="tBorder">
+                      {{ participant.nik }}
+                    </td>
+                    <td class="tBorder">
+                      {{ participant.name }}
+                    </td>
+                    <td class="tBorder">
+                      {{ participant.department }}
+                    </td>
+                    <td class="tBorder">
+                      <div class="rounded green">
+                        {{ participant.result ? 'Lulus' : 'Tidak Lulus' }}
+                      </div>
+                    </td>
+                    <td class="tBorder">
+                      <div class="rounded green">
+                        {{ participant.score }}
+                      </div>
+                    </td>
+                    <td class="tBorder">
+                      <div class="rounded green">
+                        {{ participant.note }}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr v-if="participants.length === 0">
+                    <td class="tBorder px-6 py-4" colspan="4">No participant found.</td>
+                  </tr>
+                  <tr class="tBorder">
+                    <td class="p-4 text-left">Keterangan : </td>
+                    <td colspan="3" />
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -161,14 +167,14 @@ export default {
       // var canvasElement = document.createElement('canvas')
 
       html2canvas(this.$refs.content).then(function (canvas) {
-        const imgData = canvas.toDataURL('image/png')
+        const imgData = canvas.toDataURL({type : 'jpeg'})
         const pdf = new jsPDF({
           orientation: 'potrait',
         })
         const imgProps= pdf.getImageProperties(imgData)
-        const pdfWidth = pdf.internal.pageSize.getWidth()
+        const pdfWidth = pdf.internal.pageSize.getWidth() - 10
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
-        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+        doc.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight)
         doc.save(`${name}.pdf`)
       })
     },
